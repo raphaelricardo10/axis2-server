@@ -1,4 +1,4 @@
-package phoneNumber;
+package validators.phoneNumber;
 
 import java.util.regex.Pattern;
 

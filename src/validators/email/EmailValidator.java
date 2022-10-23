@@ -1,4 +1,4 @@
-package email;
+package validators.email;
 
 import java.util.regex.Pattern;
 

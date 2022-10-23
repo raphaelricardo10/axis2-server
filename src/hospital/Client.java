@@ -1,7 +1,7 @@
 package hospital;
 
-import email.EmailValidator;
-import phoneNumber.PhoneNumberValidator;
+import validators.email.EmailValidator;
+import validators.phoneNumber.PhoneNumberValidator;
 
 public class Client {
 
