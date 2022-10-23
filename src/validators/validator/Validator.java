@@ -7,5 +7,5 @@ public abstract class Validator {
         this.pattern = pattern;
     }
 
-    abstract protected boolean is_valid(String value);
+    abstract public boolean is_valid(String value);
 }
