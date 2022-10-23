@@ -7,9 +7,9 @@ public class Client {
     private int cpf;
     private String name;
     private String email;
-    private int phoneNumber;
+    private String phoneNumber;
 
-    Client(String name, String email, int cpf, int phoneNumber) throws Exception{
+    Client(String name, String email, int cpf, String phoneNumber) throws Exception{
         this.cpf = cpf;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -45,11 +45,11 @@ public class Client {
         this.email = email;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 }
