@@ -1,4 +1,4 @@
-package hospital;
+package person;
 
 import validators.client.ClientValidator;
 
