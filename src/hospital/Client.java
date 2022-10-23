@@ -1,6 +1,7 @@
 package hospital;
 
 import email.EmailValidator;
+import phoneNumber.PhoneNumberValidator;
 
 public class Client {
 
@@ -14,6 +15,7 @@ public class Client {
         this.name = name;
         this.phoneNumber = phoneNumber;
         
+        Client.validate_phone_number(phoneNumber);
         Client.validate_email(email);
         this.setEmail(email);;
     }
@@ -21,6 +23,12 @@ public class Client {
     private static void validate_email(String email) throws Exception {
         if(!EmailValidator.is_valid(email)) {
             throw new Exception("The email supplied is invalid");
+        }
+    }
+
+    private static void validate_phone_number(String phoneNumber) throws Exception {
+        if(!PhoneNumberValidator.is_valid(phoneNumber)) {
+            throw new Exception("The phone number supplied is invalid. The format must be (xx) xxxxx-xxxx");
         }
     }
 
@@ -49,7 +57,8 @@ public class Client {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) throws Exception {
+        Client.validate_phone_number(phoneNumber);
         this.phoneNumber = phoneNumber;
     }
 }
