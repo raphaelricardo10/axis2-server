@@ -13,7 +13,15 @@ public class Client {
         this.cpf = cpf;
         this.name = name;
         this.phoneNumber = phoneNumber;
+        
+        Client.validate_email(email);
         this.setEmail(email);;
+    }
+
+    private static void validate_email(String email) throws Exception {
+        if(!EmailValidator.is_valid(email)) {
+            throw new Exception("The email supplied is invalid");
+        }
     }
 
     public int getCpf() {
@@ -33,10 +41,7 @@ public class Client {
     }
 
     public void setEmail(String email) throws Exception {
-        if(!EmailValidator.is_valid(email)){
-            throw new Exception("The email supplied is invalid");
-        }
-
+        Client.validate_email(email);
         this.email = email;
     }
 
