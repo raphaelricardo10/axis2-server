@@ -10,7 +10,7 @@ public class Person {
     private String phoneNumber;
     private ClientValidator validator;
 
-    Person(String name, String email, int cpf, String phoneNumber) throws Exception{        
+    public Person(String name, String email, int cpf, String phoneNumber) throws Exception{        
         this.validator = new ClientValidator();
         this.validator.validate_fields(email, phoneNumber);
 
