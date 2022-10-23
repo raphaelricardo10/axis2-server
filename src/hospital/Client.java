@@ -14,10 +14,9 @@ public class Client {
         this.cpf = cpf;
         this.name = name;
         this.phoneNumber = phoneNumber;
-        
-        Client.validate_phone_number(phoneNumber);
-        Client.validate_email(email);
-        this.setEmail(email);;
+        this.email = email;
+
+        this.validate_fields();
     }
 
     private static void validate_email(String email) throws Exception {
@@ -30,6 +29,11 @@ public class Client {
         if(!PhoneNumberValidator.is_valid(phoneNumber)) {
             throw new Exception("The phone number supplied is invalid. The format must be (xx) xxxxx-xxxx");
         }
+    }
+
+    private void validate_fields() throws Exception {
+        Client.validate_email(this.email);
+        Client.validate_phone_number(this.phoneNumber);
     }
 
     public int getCpf() {
