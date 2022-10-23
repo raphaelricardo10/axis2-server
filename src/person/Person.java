@@ -2,7 +2,7 @@ package person;
 
 import validators.client.ClientValidator;
 
-public class Client {
+public class Person {
 
     private int cpf;
     private String name;
@@ -10,7 +10,7 @@ public class Client {
     private String phoneNumber;
     private ClientValidator validator;
 
-    Client(String name, String email, int cpf, String phoneNumber) throws Exception{        
+    Person(String name, String email, int cpf, String phoneNumber) throws Exception{        
         this.validator = new ClientValidator();
         this.validator.validate_fields(email, phoneNumber);
 
