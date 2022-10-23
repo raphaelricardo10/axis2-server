@@ -1,5 +1,7 @@
 package hospital;
 
+import email.EmailValidator;
+
 public class Client {
 
     private int cpf;
@@ -7,11 +9,11 @@ public class Client {
     private String email;
     private int phoneNumber;
 
-    Client(String name, String email, int cpf, int phoneNumber){
+    Client(String name, String email, int cpf, int phoneNumber) throws Exception{
         this.cpf = cpf;
         this.name = name;
-        this.email = email;
         this.phoneNumber = phoneNumber;
+        this.setEmail(email);;
     }
 
     public int getCpf() {
@@ -30,7 +32,11 @@ public class Client {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email) throws Exception {
+        if(!EmailValidator.is_valid(email)){
+            throw new Exception("The email supplied is invalid");
+        }
+
         this.email = email;
     }
 
