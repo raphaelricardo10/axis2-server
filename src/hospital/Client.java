@@ -1,7 +1,6 @@
 package hospital;
 
-import validators.email.EmailValidator;
-import validators.phoneNumber.PhoneNumberValidator;
+import validators.client.ClientValidator;
 
 public class Client {
 
@@ -9,31 +8,16 @@ public class Client {
     private String name;
     private String email;
     private String phoneNumber;
+    private ClientValidator validator;
 
-    Client(String name, String email, int cpf, String phoneNumber) throws Exception{
+    Client(String name, String email, int cpf, String phoneNumber) throws Exception{        
+        this.validator = new ClientValidator();
+        this.validator.validate_fields(email, phoneNumber);
+
         this.cpf = cpf;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
-
-        this.validate_fields();
-    }
-
-    private static void validate_email(String email) throws Exception {
-        if(!EmailValidator.is_valid(email)) {
-            throw new Exception("The email supplied is invalid");
-        }
-    }
-
-    private static void validate_phone_number(String phoneNumber) throws Exception {
-        if(!PhoneNumberValidator.is_valid(phoneNumber)) {
-            throw new Exception("The phone number supplied is invalid. The format must be (xx) xxxxx-xxxx");
-        }
-    }
-
-    private void validate_fields() throws Exception {
-        Client.validate_email(this.email);
-        Client.validate_phone_number(this.phoneNumber);
     }
 
     public int getCpf() {
@@ -53,7 +37,7 @@ public class Client {
     }
 
     public void setEmail(String email) throws Exception {
-        Client.validate_email(email);
+        this.validator.validate_email(email);
         this.email = email;
     }
 
@@ -62,7 +46,7 @@ public class Client {
     }
 
     public void setPhoneNumber(String phoneNumber) throws Exception {
-        Client.validate_phone_number(phoneNumber);
+        this.validator.validate_phone_number(phoneNumber);
         this.phoneNumber = phoneNumber;
     }
 }
