@@ -18,6 +18,7 @@ public class DailySchedule {
         this.date = date;
         this.dayOfWork = dayOfWork;
         this.freeSlots = new HashSet<LocalTime>();
+        this.dayIterator = this.dayOfWork.getWorkTime().getStart();
 
         this.generateSlots();
     }
