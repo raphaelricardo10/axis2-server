@@ -2,16 +2,19 @@ package schedule;
 
 import java.util.Set;
 import java.util.HashSet;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class ScheduleDay {
     private int duration;
+    private LocalDate date;
     private LocalTime dayIterator;
     private ScheduleInterval workTime;
     private ScheduleInterval launchTime;
     private Set<LocalTime> freeSlots;
 
-    public ScheduleDay(int duration, ScheduleInterval workTime, ScheduleInterval launchTime) {
+    public ScheduleDay(int duration, ScheduleInterval workTime, ScheduleInterval launchTime, LocalDate date) {
+        this.date = date;
         this.duration = duration;
         this.workTime = workTime;
         this.launchTime = launchTime;
@@ -23,6 +26,14 @@ public class ScheduleDay {
 
     public int getDuration() {
         return duration;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public void setDuration(int duration) {
