@@ -19,12 +19,18 @@ public class CpfValidator extends Validator{
         int acc = 0;
 
         for(int pos = 0; pos < digits.size(); pos++){
-            int multiplier = pos + 2;
+            int multiplier = digits.size() - pos + 1;
 
             acc += digits.get(pos) * multiplier;
         }
 
-        return (acc * 10) % 11;
+        int verification = (acc * 10) % 11;
+
+        if(verification == 10){
+            return 0;
+        }
+
+        return verification;
     }
 
     private boolean has_correct_digit_number(){
@@ -32,13 +38,13 @@ public class CpfValidator extends Validator{
     }
 
     private boolean is_first_verification_valid(){
-        Integer verification = CpfValidator.get_verification_value(this.digits.subList(0, 8));
+        Integer verification = CpfValidator.get_verification_value(this.digits.subList(0, 9));
 
         return this.digits.get(9) == verification;
     }
 
     private boolean is_second_verification_valid(){
-        Integer verification = CpfValidator.get_verification_value(this.digits.subList(0, 9));
+        Integer verification = CpfValidator.get_verification_value(this.digits.subList(0, 10));
 
         return this.digits.get(10) == verification;
     }
