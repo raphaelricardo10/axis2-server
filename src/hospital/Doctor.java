@@ -7,12 +7,12 @@ import person.Person;
 
 public class Doctor extends Person{
     private String crm;
-    private Specialty specialty;
+    private Specialty[] specialties;
 
-    public Doctor(String name, String email, int cpf, Gender gender, String phoneNumber, Date birthDate, String crm, Specialty specialty) throws Exception {
+    public Doctor(String name, String email, int cpf, Gender gender, String phoneNumber, Date birthDate, String crm, Specialty[] specialties) throws Exception {
         super(name, email, cpf, gender, phoneNumber, birthDate);
         this.crm = crm;
-        this.specialty = specialty;
+        this.specialties = specialties;
     }
 
     public String getCrm() {
@@ -23,11 +23,11 @@ public class Doctor extends Person{
         this.crm = crm;
     }
 
-    public Specialty getSpecialization() {
-        return specialty;
+    public Specialty[] getSpecialties() {
+        return specialties;
     }
 
-    public void setSpecialization(Specialty specialty) {
-        this.specialty = specialty;
+    public void setSpecialties(Specialty[] specialties) {
+        this.specialties = specialties;
     }
 }
