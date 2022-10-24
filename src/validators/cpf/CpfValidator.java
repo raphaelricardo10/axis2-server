@@ -37,6 +37,10 @@ public class CpfValidator extends Validator{
         return this.digits.size() == 11;
     }
 
+    private boolean has_different_digits(){
+        return !this.digits.stream().allMatch(s -> s.equals(this.digits.get(0)));
+    }
+
     private boolean is_first_verification_valid(){
         Integer verification = CpfValidator.get_verification_digit(this.digits.subList(0, 9));
 
@@ -59,6 +63,10 @@ public class CpfValidator extends Validator{
         this.set_cpf_digits(cpf);
 
         if(!this.has_correct_digit_number()) {
+            return false;
+        }
+
+        if(!this.has_different_digits()){
             return false;
         }
         
