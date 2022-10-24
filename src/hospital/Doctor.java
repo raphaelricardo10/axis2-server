@@ -7,9 +7,9 @@ import person.Person;
 
 public class Doctor extends Person{
     private String crm;
-    private String specialization;
+    private Specialization specialization;
 
-    public Doctor(String name, String email, int cpf, Gender gender, String phoneNumber, Date birthDate, String crm, String specialization) throws Exception {
+    public Doctor(String name, String email, int cpf, Gender gender, String phoneNumber, Date birthDate, String crm, Specialization specialization) throws Exception {
         super(name, email, cpf, gender, phoneNumber, birthDate);
         this.crm = crm;
         this.specialization = specialization;
