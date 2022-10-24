@@ -6,10 +6,10 @@ import java.util.regex.Pattern;
 
 import validators.validator.Validator;
 
-public class Cpf extends Validator{
+public class CpfValidator extends Validator{
     private List<Integer> digits;
 
-    public Cpf() {
+    public CpfValidator() {
         super("(\\d{3}.){2}\\d{3}-\\d{2}");
         
         this.digits = new ArrayList<Integer>();
@@ -32,13 +32,13 @@ public class Cpf extends Validator{
     }
 
     private boolean is_first_verification_valid(){
-        Integer verification = Cpf.get_verification_value(this.digits.subList(0, 8));
+        Integer verification = CpfValidator.get_verification_value(this.digits.subList(0, 8));
 
         return this.digits.get(9) == verification;
     }
 
     private boolean is_second_verification_valid(){
-        Integer verification = Cpf.get_verification_value(this.digits.subList(0, 9));
+        Integer verification = CpfValidator.get_verification_value(this.digits.subList(0, 9));
 
         return this.digits.get(10) == verification;
     }
