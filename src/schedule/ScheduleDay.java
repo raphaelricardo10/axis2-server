@@ -22,12 +22,12 @@ public class ScheduleDay {
         this.generateSlots();
     }
 
-    public int getEventSize() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setEventSize(int eventSize) {
-        this.duration = eventSize;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     public ScheduleInterval getWorkTime() {
