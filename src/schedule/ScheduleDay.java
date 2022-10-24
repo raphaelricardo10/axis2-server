@@ -1,31 +1,25 @@
 package schedule;
 
 import java.util.Set;
+
+import workData.DayOfWork;
+
 import java.util.HashSet;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class ScheduleDay {
-    private int duration;
     private LocalDate date;
+    private DayOfWork dayOfWork;
     private LocalTime dayIterator;
-    private ScheduleInterval workTime;
-    private ScheduleInterval launchTime;
     private Set<LocalTime> freeSlots;
 
-    public ScheduleDay(int duration, ScheduleInterval workTime, ScheduleInterval launchTime, LocalDate date) {
+    public ScheduleDay(DayOfWork dayOfWork, LocalDate date) {
         this.date = date;
-        this.duration = duration;
-        this.workTime = workTime;
-        this.launchTime = launchTime;
+        this.dayOfWork = dayOfWork;
         this.freeSlots = new HashSet<LocalTime>();
-        this.dayIterator = this.workTime.getStart();
 
         this.generateSlots();
-    }
-
-    public int getDuration() {
-        return duration;
     }
 
     public LocalDate getDate() {
@@ -36,28 +30,28 @@ public class ScheduleDay {
         this.date = date;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public ScheduleInterval getWorkTime() {
-        return workTime;
-    }
-
-    public void setWorkTime(ScheduleInterval workTime) {
-        this.workTime = workTime;
-    }
-
-    public ScheduleInterval getLaunchTime() {
-        return launchTime;
-    }
-
-    public void setLaunchTime(ScheduleInterval launchTime) {
-        this.launchTime = launchTime;
-    }
-
     public Set<LocalTime> getFreeSlots() {
         return this.freeSlots;
+    }
+    
+    public void setFreeSlots(Set<LocalTime> freeSlots) {
+        this.freeSlots = freeSlots;
+    }
+
+    public DayOfWork getDayOfWork() {
+        return dayOfWork;
+    }
+
+    public void setDayOfWork(DayOfWork dayOfWork) {
+        this.dayOfWork = dayOfWork;
+    }
+
+    public LocalTime getDayIterator() {
+        return dayIterator;
+    }
+
+    public void setDayIterator(LocalTime dayIterator) {
+        this.dayIterator = dayIterator;
     }
 
     public void addSlot(LocalTime slot) {
@@ -69,19 +63,19 @@ public class ScheduleDay {
     }
 
     private boolean is_in_working_time() {
-        return this.dayIterator.isBefore(this.workTime.getEnd());
+        return this.dayIterator.isBefore(this.dayOfWork.getWorkTime().getEnd());
     }
 
     private boolean is_in_lunch_time() {
-        if (this.dayIterator.equals(this.launchTime.getStart())) {
+        if (this.dayIterator.equals(this.dayOfWork.getLaunchTime().getStart())) {
             return true;
         }
 
-        if (this.dayIterator.isBefore(this.launchTime.getStart())) {
+        if (this.dayIterator.isBefore(this.dayOfWork.getLaunchTime().getStart())) {
             return false;
         }
 
-        if (this.dayIterator.isAfter(this.launchTime.getEnd())) {
+        if (this.dayIterator.isAfter(this.dayOfWork.getLaunchTime().getEnd())) {
             return false;
         }
 
@@ -89,11 +83,11 @@ public class ScheduleDay {
     }
 
     private void skip_launch_time() {
-        this.dayIterator = this.launchTime.getEnd();
+        this.dayIterator = this.dayOfWork.getLaunchTime().getEnd();
     }
 
     private void advanceIterator() {
-        this.dayIterator = this.dayIterator.plusMinutes(this.duration);
+        this.dayIterator = this.dayIterator.plusMinutes(this.dayOfWork.getAppointmentDuration());
     }
 
     private void generateSlots() {
