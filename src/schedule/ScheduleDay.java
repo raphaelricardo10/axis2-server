@@ -22,6 +22,10 @@ public class ScheduleDay {
         this.generateSlots();
     }
 
+    public ScheduleDay(DayOfWork dayOfWork) {
+        this(dayOfWork, LocalDate.now());
+    }
+
     public LocalDate getDate() {
         return date;
     }
