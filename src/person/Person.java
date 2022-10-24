@@ -7,10 +7,11 @@ public class Person {
     private int cpf;
     private String name;
     private String email;
+    private Gender gender;
     private String phoneNumber;
     private ClientValidator validator;
 
-    public Person(String name, String email, int cpf, String phoneNumber) throws Exception{        
+    public Person(String name, String email, int cpf, Gender gender, String phoneNumber) throws Exception{        
         this.validator = new ClientValidator();
         this.validator.validate_fields(email, phoneNumber);
 
@@ -43,6 +44,14 @@ public class Person {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public void setPhoneNumber(String phoneNumber) throws Exception {
