@@ -86,6 +86,8 @@ public class CpfValidator extends Validator{
     }
 
     private void set_cpf_digits(String cpf){
+        cpf = cpf.replaceAll("\\D+","");
+
         List<Integer> digits = new ArrayList<Integer>();
        
         for(char digit : cpf.toCharArray()){
