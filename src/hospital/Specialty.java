@@ -1,6 +1,6 @@
 package hospital;
 
-public enum Specialization {
+public enum Specialty {
     ALLERGY_AND_IMMUNOLOGY,
     ANESTHESIOLOGY,
     DERMATOLOGY,
