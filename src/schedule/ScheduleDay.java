@@ -70,7 +70,7 @@ public class ScheduleDay {
         this.dayIterator = this.launchTime.getEnd();   
     }
 
-    private void advance() {
+    private void advanceIterator() {
         this.dayIterator = this.dayIterator.plusMinutes(this.duration);
     }
 
@@ -81,7 +81,7 @@ public class ScheduleDay {
             }
 
             this.freeSlots.add(this.dayIterator);
-            this.advance();
+            this.advanceIterator();
         }
     }
 
