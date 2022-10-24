@@ -1,7 +1,5 @@
 package workData;
 
-import java.time.LocalTime;
-
 import schedule.ScheduleInterval;
 
 public class DayOfWork {
