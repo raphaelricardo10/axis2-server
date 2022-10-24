@@ -9,7 +9,7 @@ import validators.phoneNumber.PhoneNumberValidator;
 public class ValidatorsTest extends TestCase {
     private static <T extends Validator> boolean is_all_valid(String[] data, T validator) {
         for (String o : data) {
-            if(!validator.is_valid(o)) {
+            if (!validator.is_valid(o)) {
                 return false;
             }
         }
@@ -37,16 +37,16 @@ public class ValidatorsTest extends TestCase {
         PhoneNumberValidator validator = new PhoneNumberValidator();
 
         String[] validPhoneNumbers = {
-            "(21) 99999-9999",
-            "(21) 2602-0000"
+                "(21) 99999-9999",
+                "(21) 2602-0000"
         };
 
         String[] invalidPhoneNumbers = {
-            "21 99999999",
-            "999999999",
-            "21999999999",
-            "(21)999999999",
-            "(21) 999999999"
+                "21 99999999",
+                "999999999",
+                "21999999999",
+                "(21)999999999",
+                "(21) 999999999"
         };
 
         assertTrue(ValidatorsTest.is_all_valid(validPhoneNumbers, validator));
@@ -59,16 +59,15 @@ public class ValidatorsTest extends TestCase {
         String validCpf = "161.491.137-10";
 
         String[] invalidCpfs = {
-            "16149113710",
-            "161.491.13710",
-            "161491137-10",
-            "16149113710",
-            "12345678910",
-            "123.456.789-10"
+                "16149113710",
+                "161.491.13710",
+                "161491137-10",
+                "16149113710",
+                "12345678910",
+                "123.456.789-10"
         };
 
         assertTrue(validator.is_valid(validCpf));
-
         assertFalse(ValidatorsTest.is_all_valid(invalidCpfs, validator));
     }
 }
