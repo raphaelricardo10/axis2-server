@@ -4,7 +4,6 @@ import java.util.Set;
 import java.util.HashSet;
 import java.time.LocalTime;
 
-
 public class ScheduleDay {
     private int duration;
     private LocalTime dayIterator;
@@ -46,20 +45,24 @@ public class ScheduleDay {
         this.launchTime = launchTime;
     }
 
+    public Set<LocalTime> getFreeSlots() {
+        return this.freeSlots;
+    }
+
     private boolean is_in_working_time() {
         return this.dayIterator.isBefore(this.workTime.getEnd());
     }
 
     private boolean is_in_lunch_time() {
-        if(this.dayIterator.equals(this.launchTime.getStart())){
+        if (this.dayIterator.equals(this.launchTime.getStart())) {
             return true;
         }
 
-        if(this.dayIterator.isBefore(this.launchTime.getStart())){
+        if (this.dayIterator.isBefore(this.launchTime.getStart())) {
             return false;
         }
-        
-        if(this.dayIterator.isAfter(this.launchTime.getEnd())){
+
+        if (this.dayIterator.isAfter(this.launchTime.getEnd())) {
             return false;
         }
 
@@ -67,25 +70,21 @@ public class ScheduleDay {
     }
 
     private void skip_launch_time() {
-        this.dayIterator = this.launchTime.getEnd();   
+        this.dayIterator = this.launchTime.getEnd();
     }
 
     private void advanceIterator() {
         this.dayIterator = this.dayIterator.plusMinutes(this.duration);
     }
 
-    private void generateSlots() { 
-        while(this.is_in_working_time()){
-            if(this.is_in_lunch_time()){
+    private void generateSlots() {
+        while (this.is_in_working_time()) {
+            if (this.is_in_lunch_time()) {
                 this.skip_launch_time();
             }
 
             this.freeSlots.add(this.dayIterator);
             this.advanceIterator();
         }
-    }
-
-    public Set<LocalTime> getFreeSlots() {
-        return this.freeSlots;
     }
 }
