@@ -46,14 +46,42 @@ public class ScheduleDay {
         this.launchTime = launchTime;
     }
 
+    private boolean is_in_working_time() {
+        return this.dayIterator.isBefore(this.workTime.getEnd());
+    }
+
+    private boolean is_in_lunch_time() {
+        if(this.dayIterator.equals(this.launchTime.getStart())){
+            return true;
+        }
+
+        if(this.dayIterator.isBefore(this.launchTime.getStart())){
+            return false;
+        }
+        
+        if(this.dayIterator.isAfter(this.launchTime.getEnd())){
+            return false;
+        }
+
+        return true;
+    }
+
+    private void skip_launch_time() {
+        this.dayIterator = this.launchTime.getEnd();   
+    }
+
+    private void advance() {
+        this.dayIterator = this.dayIterator.plusMinutes(this.duration);
+    }
+
     private void generateSlots() { 
-        while(this.dayIterator.isBefore(this.workTime.getEnd())){
-            if(this.dayIterator.isAfter(this.launchTime.getStart()) && this.dayIterator.isBefore(this.launchTime.getEnd()) || this.dayIterator.equals(this.launchTime.getStart())){
-                this.dayIterator = this.launchTime.getEnd();
+        while(this.is_in_working_time()){
+            if(this.is_in_lunch_time()){
+                this.skip_launch_time();
             }
 
             this.freeSlots.add(this.dayIterator);
-            this.dayIterator = this.dayIterator.plusMinutes(this.duration);
+            this.advance();
         }
     }
 
