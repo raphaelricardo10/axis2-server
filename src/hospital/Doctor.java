@@ -1,5 +1,6 @@
 package hospital;
 
+import java.util.Set;
 import java.util.Date;
 
 import person.Gender;
@@ -7,12 +8,12 @@ import person.Person;
 
 public class Doctor extends Person{
     private String crm;
-    private Specialty[] specialties;
+    private Set<Specialty> specialties;
 
     public Doctor(String name, String email, int cpf, Gender gender, String phoneNumber, Date birthDate, String crm, Specialty[] specialties) throws Exception {
         super(name, email, cpf, gender, phoneNumber, birthDate);
         this.crm = crm;
-        this.specialties = specialties;
+        this.specialties = Set.of(specialties);
     }
 
     public String getCrm() {
@@ -23,11 +24,11 @@ public class Doctor extends Person{
         this.crm = crm;
     }
 
-    public Specialty[] getSpecialties() {
-        return specialties;
+    public Set<Specialty> getSpecialties() {
+        return this.specialties;
     }
 
-    public void setSpecialties(Specialty[] specialties) {
-        this.specialties = specialties;
+    public boolean hasSpecialty(Specialty specialty){
+        return this.specialties.contains(specialty);
     }
 }
