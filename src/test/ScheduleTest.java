@@ -5,7 +5,7 @@ import java.time.LocalTime;
 
 import junit.framework.TestCase;
 import schedule.MonthlySchedule;
-import schedule.ScheduleDay;
+import schedule.DailySchedule;
 import schedule.ScheduleInterval;
 import workData.DayOfWork;
 
@@ -17,7 +17,7 @@ public class ScheduleTest extends TestCase {
 
         DayOfWork dayOfWork = new DayOfWork(appointmentDuration, workTime, lunchTime);
 
-        ScheduleDay day = new ScheduleDay(dayOfWork);
+        DailySchedule day = new DailySchedule(dayOfWork);
 
         assertEquals(day.getFreeSlots().size(), 14);
         assertFalse(day.getFreeSlots().contains(lunchTime.getStart()));

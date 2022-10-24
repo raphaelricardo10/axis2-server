@@ -9,19 +9,19 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class MonthlySchedule {
-    private Set<ScheduleDay> days;
+    private Set<DailySchedule> days;
     private Set<DayOfWeek> workingDays;
     private LocalDate dayIterator;
 
     public MonthlySchedule(DayOfWeek[] workingDays) {
-        this.days = new HashSet<ScheduleDay>();
+        this.days = new HashSet<DailySchedule>();
         this.workingDays = Set.of(workingDays);
         this.dayIterator = LocalDate.now();
 
         this.generateSchedule();
     }
 
-    public Set<ScheduleDay> getDays() {
+    public Set<DailySchedule> getDays() {
         return days;
     }
 
@@ -44,7 +44,7 @@ public class MonthlySchedule {
             if (this.workingDays.contains(this.dayIterator.getDayOfWeek())) {
                 DayOfWork dayOfWork = new DayOfWork(appointmentDuration, workTime, lunchTime);
 
-                this.days.add(new ScheduleDay(dayOfWork, this.dayIterator));
+                this.days.add(new DailySchedule(dayOfWork, this.dayIterator));
             }
 
             this.dayIterator = this.dayIterator.plusDays(1);

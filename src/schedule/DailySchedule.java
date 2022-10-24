@@ -8,13 +8,13 @@ import java.util.HashSet;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class ScheduleDay {
+public class DailySchedule {
     private LocalDate date;
     private DayOfWork dayOfWork;
     private LocalTime dayIterator;
     private Set<LocalTime> freeSlots;
 
-    public ScheduleDay(DayOfWork dayOfWork, LocalDate date) {
+    public DailySchedule(DayOfWork dayOfWork, LocalDate date) {
         this.date = date;
         this.dayOfWork = dayOfWork;
         this.freeSlots = new HashSet<LocalTime>();
@@ -22,7 +22,7 @@ public class ScheduleDay {
         this.generateSlots();
     }
 
-    public ScheduleDay(DayOfWork dayOfWork) {
+    public DailySchedule(DayOfWork dayOfWork) {
         this(dayOfWork, LocalDate.now());
     }
 
