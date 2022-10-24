@@ -15,7 +15,7 @@ public class CpfValidator extends Validator{
         this.digits = new ArrayList<Integer>();
     }
 
-    private static int get_verification_value(List<Integer> digits){
+    private static int get_verification_digit(List<Integer> digits){
         int acc = 0;
 
         for(int pos = 0; pos < digits.size(); pos++){
@@ -38,13 +38,13 @@ public class CpfValidator extends Validator{
     }
 
     private boolean is_first_verification_valid(){
-        Integer verification = CpfValidator.get_verification_value(this.digits.subList(0, 9));
+        Integer verification = CpfValidator.get_verification_digit(this.digits.subList(0, 9));
 
         return this.digits.get(9) == verification;
     }
 
     private boolean is_second_verification_valid(){
-        Integer verification = CpfValidator.get_verification_value(this.digits.subList(0, 10));
+        Integer verification = CpfValidator.get_verification_digit(this.digits.subList(0, 10));
 
         return this.digits.get(10) == verification;
     }
