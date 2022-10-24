@@ -48,6 +48,14 @@ public class ScheduleDay {
     public Set<LocalTime> getFreeSlots() {
         return this.freeSlots;
     }
+    
+    public void addSlot(LocalTime slot) {
+        this.freeSlots.add(slot);
+    }
+
+    public void removeSlot(LocalTime slot) {
+        this.freeSlots.remove(slot);
+    }
 
     private boolean is_in_working_time() {
         return this.dayIterator.isBefore(this.workTime.getEnd());
