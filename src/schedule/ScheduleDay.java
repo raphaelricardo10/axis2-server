@@ -46,7 +46,7 @@ public class ScheduleDay {
         this.launchTime = launchTime;
     }
 
-    public void generateSlots() { 
+    private void generateSlots() { 
         while(this.dayIterator.isBefore(this.workTime.getEnd())){
             if(this.dayIterator.isAfter(this.launchTime.getStart()) && this.dayIterator.isBefore(this.launchTime.getEnd()) || this.dayIterator.equals(this.launchTime.getStart())){
                 this.dayIterator = this.launchTime.getEnd();
