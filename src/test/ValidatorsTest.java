@@ -64,7 +64,9 @@ public class ValidatorsTest extends TestCase {
                 "161491137-10",
                 "16149113710",
                 "12345678910",
-                "123.456.789-10"
+                "123.456.789-10",
+                "111.111.111-11",
+                "11111111111",
         };
 
         assertTrue(validator.is_valid(validCpf));
