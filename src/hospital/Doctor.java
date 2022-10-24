@@ -1,13 +1,16 @@
 package hospital;
 
+import java.util.Date;
+
+import person.Gender;
 import person.Person;
 
 public class Doctor extends Person{
     private String crm;
     private String specialization;
 
-    public Doctor(String name, String email, int cpf, String phoneNumber, String crm, String specialization) throws Exception {
-        super(name, email, cpf, phoneNumber);
+    public Doctor(String name, String email, int cpf, Gender gender, String phoneNumber, Date birthDate, String crm, String specialization) throws Exception {
+        super(name, email, cpf, gender, phoneNumber, birthDate);
         this.crm = crm;
         this.specialization = specialization;
     }
