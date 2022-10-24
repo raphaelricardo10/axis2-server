@@ -16,7 +16,7 @@ public class ClientAllocation {
 
     public ClientAllocation(Person client, Doctor doctor, Specialty specialty, LocalTime scheduleTime,
             LocalDateTime createdAt) throws Exception {
-        
+
         this.validateSpecialty(specialty);
 
         this.client = client;
@@ -47,7 +47,7 @@ public class ClientAllocation {
     }
 
     private void validateSpecialty(Specialty specialty) throws Exception {
-        if(!this.doctor.hasSpecialty(specialty)){
+        if (!this.doctor.hasSpecialty(specialty)) {
             throw new Exception("The doctor does not have this specialty");
         }
     }

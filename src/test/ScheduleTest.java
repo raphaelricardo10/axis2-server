@@ -1,7 +1,6 @@
 package test;
 
 import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 import junit.framework.TestCase;
@@ -10,7 +9,7 @@ import schedule.ScheduleDay;
 import schedule.ScheduleInterval;
 import workData.DayOfWork;
 
-public class ScheduleTest extends TestCase{
+public class ScheduleTest extends TestCase {
     public void testSlotsGenerated() {
         int appointmentDuration = 30;
         ScheduleInterval workTime = new ScheduleInterval(LocalTime.of(9, 0), LocalTime.of(17, 0));
@@ -25,7 +24,7 @@ public class ScheduleTest extends TestCase{
     }
 
     public void testMonthlyScheduleGenerated() {
-        DayOfWeek[] daysOfWeek = {DayOfWeek.THURSDAY, DayOfWeek.TUESDAY};
+        DayOfWeek[] daysOfWeek = { DayOfWeek.THURSDAY, DayOfWeek.TUESDAY };
 
         MonthlySchedule schedule = new MonthlySchedule(daysOfWeek);
 

@@ -12,7 +12,7 @@ public class MonthlySchedule {
     private Set<ScheduleDay> days;
     private Set<DayOfWeek> workingDays;
     private LocalDate dayIterator;
-    
+
     public MonthlySchedule(DayOfWeek[] workingDays) {
         this.days = new HashSet<ScheduleDay>();
         this.workingDays = Set.of(workingDays);
@@ -40,8 +40,8 @@ public class MonthlySchedule {
         ScheduleInterval workTime = new ScheduleInterval(LocalTime.of(9, 0), LocalTime.of(17, 0));
         ScheduleInterval lunchTime = new ScheduleInterval(LocalTime.of(12, 0), LocalTime.of(13, 0));
 
-        while(!this.dayIterator.isAfter(endDate)){
-            if(this.workingDays.contains(this.dayIterator.getDayOfWeek())){
+        while (!this.dayIterator.isAfter(endDate)) {
+            if (this.workingDays.contains(this.dayIterator.getDayOfWeek())) {
                 DayOfWork dayOfWork = new DayOfWork(appointmentDuration, workTime, lunchTime);
 
                 this.days.add(new ScheduleDay(dayOfWork, this.dayIterator));

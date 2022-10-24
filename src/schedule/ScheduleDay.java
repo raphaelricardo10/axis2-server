@@ -37,7 +37,7 @@ public class ScheduleDay {
     public Set<LocalTime> getFreeSlots() {
         return this.freeSlots;
     }
-    
+
     public void setFreeSlots(Set<LocalTime> freeSlots) {
         this.freeSlots = freeSlots;
     }
