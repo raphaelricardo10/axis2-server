@@ -35,7 +35,5 @@ public class ScheduleTest extends TestCase {
             DayOfWeek dayOfWeek = day.getDate().getDayOfWeek();
             assertTrue(schedule.getWorkingDays().contains(dayOfWeek));
         }
-
-        schedule.getDays();
     }
 }
