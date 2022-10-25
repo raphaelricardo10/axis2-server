@@ -1,6 +1,5 @@
 package allocation;
 
-import java.time.LocalTime;
 import java.time.LocalDateTime;
 
 import hospital.Doctor;
