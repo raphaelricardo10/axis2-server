@@ -1,12 +1,21 @@
 package schedule;
 
 import java.util.Set;
+import java.util.TreeSet;
 
 import workData.DayOfWork;
 
-import java.util.HashSet;
+import java.util.Comparator;
 import java.time.LocalDate;
 import java.time.LocalTime;
+
+final class DateComparator implements Comparator<LocalTime>{
+    @Override
+    public int compare(LocalTime t1, LocalTime t2) {
+        return t2.compareTo(t2);
+    }
+}
+
 
 public class DailySchedule {
     private LocalDate date;
@@ -17,7 +26,7 @@ public class DailySchedule {
     public DailySchedule(DayOfWork dayOfWork, LocalDate date) {
         this.date = date;
         this.dayOfWork = dayOfWork;
-        this.freeSlots = new HashSet<LocalTime>();
+        this.freeSlots = new TreeSet<LocalTime>(new DateComparator());
         this.dayIterator = this.dayOfWork.getWorkTime().getStart();
 
         this.generateSlots();
@@ -37,10 +46,6 @@ public class DailySchedule {
 
     public Set<LocalTime> getFreeSlots() {
         return this.freeSlots;
-    }
-
-    public void setFreeSlots(Set<LocalTime> freeSlots) {
-        this.freeSlots = freeSlots;
     }
 
     public DayOfWork getDayOfWork() {
