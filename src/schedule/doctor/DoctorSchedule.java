@@ -32,6 +32,7 @@ public class DoctorSchedule {
         this.endDate = startDate.plusDays(30);
         this.schedule = new HashSet<DailySchedule>();
 
+        this.allocations = new HashSet<ClientAllocation>();
         this.generateSchedule();
     }
 
