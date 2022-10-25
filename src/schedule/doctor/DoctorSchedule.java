@@ -59,6 +59,10 @@ public class DoctorSchedule {
         return schedule;
     }
 
+    public DailySchedule getSchedule(LocalDate date) {
+        return this.schedule.stream().filter(sch -> sch.getDate().equals(date)).findAny().get();
+    }
+
     public Set<ClientAllocation> getAllocations() {
         return this.allocations;
     }
@@ -67,8 +71,8 @@ public class DoctorSchedule {
         return this.allocations.stream().filter(al -> al.getClient().getName().startsWith(clientName)).collect(Collectors.toSet());
     }
 
-    public Set<ClientAllocation> getAllocations(LocalDate day) {
-        return this.allocations.stream().filter(al -> al.getScheduleTime().toLocalDate().equals(day)).collect(Collectors.toSet());
+    public Set<ClientAllocation> getAllocations(LocalDate date) {
+        return this.allocations.stream().filter(al -> al.getScheduleTime().toLocalDate().equals(date)).collect(Collectors.toSet());
     }
 
     private void validateSpecialty(Specialty specialty) throws Exception {
