@@ -8,6 +8,9 @@
         <fileset dir="${axis2.home}/lib/">
             <include name="*.jar" />
         </fileset>
+        <fileset dir="${basedir}/lib/">
+            <include name="*.jar" />
+        </fileset>
     </path>
 
     <target name="compile.service">
@@ -26,10 +29,10 @@
         <taskdef name="java2wsdl"
             classname="org.apache.ws.java2wsdl.Java2WSDLTask"
             classpathref="axis2.classpath" />
-        <java2wsdl className="com.journaldev.ws.MyService"
+        <java2wsdl className="service.MyService"
             outputLocation="${build.dir}"
-            targetNamespace="https://journaldev.com/"
-            schemaTargetNamespace="https://journaldev.com/xsd">
+            targetNamespace="http://service"
+            schemaTargetNamespace="http://service">
             <classpath>
                 <pathelement path="${axis2.classpath}" />
                 <pathelement location="${build.dir}/classes" />
