@@ -13,16 +13,15 @@ public class ClientAllocation {
     private LocalDateTime scheduledTo;
     private LocalDateTime createdAt;
 
-    public ClientAllocation(Person client, Doctor doctor, Specialty specialty, LocalDateTime scheduledTo,
-            LocalDateTime createdAt) throws Exception {
+    public ClientAllocation(Person client, Doctor doctor, Specialty specialty, LocalDateTime scheduledTo) throws Exception {
 
         this.validateSpecialty(specialty);
 
         this.client = client;
         this.doctor = doctor;
         this.specialty = specialty;
-        this.createdAt = createdAt;
         this.scheduledTo = scheduledTo;
+        this.createdAt = LocalDateTime.now();
     }
 
     public Person getClient() {
