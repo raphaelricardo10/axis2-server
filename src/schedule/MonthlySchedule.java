@@ -13,12 +13,16 @@ public class MonthlySchedule {
     private Set<DayOfWeek> workingDays;
     private LocalDate dayIterator;
 
-    public MonthlySchedule(DayOfWeek[] workingDays) {
+    public MonthlySchedule(DayOfWeek[] workingDays, LocalDate startDate) {
         this.days = new HashSet<DailySchedule>();
         this.workingDays = Set.of(workingDays);
-        this.dayIterator = LocalDate.now();
+        this.dayIterator = startDate;
 
         this.generateSchedule();
+    }
+
+    public MonthlySchedule(DayOfWeek[] workingDays) {
+        this(workingDays, LocalDate.now());
     }
 
     public Set<DailySchedule> getDays() {
