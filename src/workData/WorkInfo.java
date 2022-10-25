@@ -9,9 +9,9 @@ public class WorkInfo {
     private Set<DayOfWeek> workingDays;
     private int appointmentDuration;
 
-    public WorkInfo(DayOfWork dayOfWork, Set<DayOfWeek> workingDays) {
+    public WorkInfo(DayOfWork dayOfWork, DayOfWeek[] workingDays) {
         this.dayOfWork = dayOfWork;
-        this.workingDays = workingDays;
+        this.workingDays = Set.of(workingDays);
     }
 
     public DayOfWork getDayOfWork() {
