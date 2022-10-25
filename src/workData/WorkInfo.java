@@ -3,25 +3,14 @@ package workData;
 import java.util.Set;
 import java.time.DayOfWeek;
 
-import hospital.Doctor;
 
-public class DoctorWorkInfo {
-    private Doctor doctor;
+public class WorkInfo {
     private DayOfWork dayOfWork;
     private Set<DayOfWeek> workingDays;
 
-    public DoctorWorkInfo(Doctor doctor, DayOfWork dayOfWork, Set<DayOfWeek> workingDays) {
-        this.doctor = doctor;
+    public WorkInfo(DayOfWork dayOfWork, Set<DayOfWeek> workingDays) {
         this.dayOfWork = dayOfWork;
         this.workingDays = workingDays;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
     }
 
     public DayOfWork getDayOfWork() {
