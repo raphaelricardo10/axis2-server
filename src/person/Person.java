@@ -6,7 +6,7 @@ import validators.client.ClientValidator;
 
 public class Person {
 
-    private int cpf;
+    private String cpf;
     private LocalDate birthDate;
     private String name;
     private String email;
@@ -14,9 +14,9 @@ public class Person {
     private String phoneNumber;
     private ClientValidator validator;
 
-    public Person(String name, String email, int cpf, Gender gender, String phoneNumber, LocalDate birthDate) throws Exception{        
+    public Person(String name, String email, String cpf, Gender gender, String phoneNumber, LocalDate birthDate) throws Exception{        
         this.validator = new ClientValidator();
-        this.validator.validate_fields(email, phoneNumber);
+        this.validator.validate_fields(email, phoneNumber, cpf);
 
         this.cpf = cpf;
         this.name = name;
@@ -26,7 +26,7 @@ public class Person {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
