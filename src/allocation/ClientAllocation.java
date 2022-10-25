@@ -2,23 +2,17 @@ package allocation;
 
 import java.time.LocalDateTime;
 
-import hospital.Doctor;
 import hospital.Specialty;
 import person.Person;
 
 public class ClientAllocation {
     private Person client;
-    private Doctor doctor;
     private Specialty specialty;
     private LocalDateTime scheduledTo;
     private LocalDateTime createdAt;
 
-    public ClientAllocation(Person client, Doctor doctor, Specialty specialty, LocalDateTime scheduledTo) throws Exception {
-
-        this.validateSpecialty(specialty);
-
+    public ClientAllocation(Person client, Specialty specialty, LocalDateTime scheduledTo) {
         this.client = client;
-        this.doctor = doctor;
         this.specialty = specialty;
         this.scheduledTo = scheduledTo;
         this.createdAt = LocalDateTime.now();
@@ -32,26 +26,11 @@ public class ClientAllocation {
         this.client = client;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
-
     public Specialty getSpecialty() {
         return specialty;
     }
 
-    private void validateSpecialty(Specialty specialty) throws Exception {
-        if (!this.doctor.hasSpecialty(specialty)) {
-            throw new Exception("The doctor does not have this specialty");
-        }
-    }
-
-    public void setSpecialty(Specialty specialty) throws Exception {
-        this.validateSpecialty(specialty);
+    public void setSpecialty(Specialty specialty) {
         this.specialty = specialty;
     }
 

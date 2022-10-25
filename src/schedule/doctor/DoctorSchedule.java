@@ -70,9 +70,17 @@ public class DoctorSchedule {
     public Set<ClientAllocation> getAllocations(LocalDate day) {
         return this.allocations.stream().filter(al -> al.getScheduleTime().toLocalDate().equals(day)).collect(Collectors.toSet());
     }
+
+    private void validateSpecialty(Specialty specialty) throws Exception {
+        if (!this.doctor.hasSpecialty(specialty)) {
+            throw new Exception("The doctor does not have this specialty");
+        }
+    }
     
     public void allocateClient(Person client, Specialty specialty, LocalDateTime scheduledTo) throws Exception {
-        this.allocations.add(new ClientAllocation(client, this.doctor, specialty, scheduledTo));
+        this.validateSpecialty(specialty);
+
+        this.allocations.add(new ClientAllocation(client, specialty, scheduledTo));
     }
 
     public void generateSchedule() {
