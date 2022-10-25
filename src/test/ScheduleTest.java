@@ -1,6 +1,7 @@
 package test;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import junit.framework.TestCase;
@@ -26,7 +27,14 @@ public class ScheduleTest extends TestCase {
     public void testMonthlyScheduleGenerated() {
         DayOfWeek[] daysOfWeek = { DayOfWeek.THURSDAY, DayOfWeek.TUESDAY };
 
-        MonthlySchedule schedule = new MonthlySchedule(daysOfWeek);
+        MonthlySchedule schedule = new MonthlySchedule(daysOfWeek, LocalDate.of(2022, 10, 24));
+
+        assertEquals(schedule.getDays().size(), 9);
+        
+        for(DailySchedule day : schedule.getDays()) {
+            DayOfWeek dayOfWeek = day.getDate().getDayOfWeek();
+            assertTrue(schedule.getWorkingDays().contains(dayOfWeek));
+        }
 
         schedule.getDays();
     }
