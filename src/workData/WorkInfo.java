@@ -7,6 +7,7 @@ import java.time.DayOfWeek;
 public class WorkInfo {
     private DayOfWork dayOfWork;
     private Set<DayOfWeek> workingDays;
+    private int appointmentDuration;
 
     public WorkInfo(DayOfWork dayOfWork, Set<DayOfWeek> workingDays) {
         this.dayOfWork = dayOfWork;
@@ -27,5 +28,13 @@ public class WorkInfo {
 
     public void setWorkingDays(Set<DayOfWeek> workingDays) {
         this.workingDays = workingDays;
+    }
+
+    public int getAppointmentDuration() {
+        return appointmentDuration;
+    }
+
+    public void setAppointmentDuration(int appointmentDuration) {
+        this.appointmentDuration = appointmentDuration;
     }
 }
