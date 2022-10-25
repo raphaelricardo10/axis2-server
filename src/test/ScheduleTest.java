@@ -45,8 +45,8 @@ public class ScheduleTest extends TestCase {
         DoctorSchedule schedule = new DoctorSchedule(null, this.workInfo, this.startDate);
 
         assertEquals(schedule.getSchedule().size(), 9);
-        
-        for(DailySchedule day : schedule.getSchedule()) {
+
+        for (DailySchedule day : schedule.getSchedule()) {
             DayOfWeek dayOfWeek = day.getDate().getDayOfWeek();
             assertTrue(schedule.getWorkInfo().getWorkingDays().contains(dayOfWeek));
         }
