@@ -11,10 +11,10 @@ public class ClientAllocation {
     private Person client;
     private Doctor doctor;
     private Specialty specialty;
-    private LocalTime scheduleTime;
+    private LocalDateTime scheduledTo;
     private LocalDateTime createdAt;
 
-    public ClientAllocation(Person client, Doctor doctor, Specialty specialty, LocalTime scheduleTime,
+    public ClientAllocation(Person client, Doctor doctor, Specialty specialty, LocalDateTime scheduledTo,
             LocalDateTime createdAt) throws Exception {
 
         this.validateSpecialty(specialty);
@@ -23,7 +23,7 @@ public class ClientAllocation {
         this.doctor = doctor;
         this.specialty = specialty;
         this.createdAt = createdAt;
-        this.scheduleTime = scheduleTime;
+        this.scheduledTo = scheduledTo;
     }
 
     public Person getClient() {
@@ -57,12 +57,12 @@ public class ClientAllocation {
         this.specialty = specialty;
     }
 
-    public LocalTime getScheduleTime() {
-        return scheduleTime;
+    public LocalDateTime getScheduleTime() {
+        return this.scheduledTo;
     }
 
-    public void setScheduleTime(LocalTime scheduleTime) {
-        this.scheduleTime = scheduleTime;
+    public void setScheduleTime(LocalDateTime scheduleTime) {
+        this.scheduledTo = scheduleTime;
     }
 
     public LocalDateTime getCreatedAt() {
