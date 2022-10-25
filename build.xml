@@ -70,7 +70,7 @@
     </target>
 
     <target name="deploy.client" depends="generate.wsdl, generate.client">
-        <copy toDir="${client.dir}/src" failonerror="true">
+        <copy toDir="${client.dir}" failonerror="true">
             <fileset dir="${build.dir}/resources/">
                 <include name="build.xml" />
                 <include name="src/**/*.java" />
