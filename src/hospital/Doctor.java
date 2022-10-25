@@ -1,7 +1,7 @@
 package hospital;
 
+import java.time.LocalDate;
 import java.util.Set;
-import java.util.Date;
 
 import person.Gender;
 import person.Person;
@@ -10,7 +10,7 @@ public class Doctor extends Person{
     private String crm;
     private Set<Specialty> specialties;
 
-    public Doctor(String name, String email, int cpf, Gender gender, String phoneNumber, Date birthDate, String crm, Specialty[] specialties) throws Exception {
+    public Doctor(String name, String email, int cpf, Gender gender, String phoneNumber, LocalDate birthDate, String crm, Specialty[] specialties) throws Exception {
         super(name, email, cpf, gender, phoneNumber, birthDate);
         this.crm = crm;
         this.specialties = Set.of(specialties);

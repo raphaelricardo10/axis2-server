@@ -1,20 +1,20 @@
 package person;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import validators.client.ClientValidator;
 
 public class Person {
 
     private int cpf;
-    private Date birthDate;
+    private LocalDate birthDate;
     private String name;
     private String email;
     private Gender gender;
     private String phoneNumber;
     private ClientValidator validator;
 
-    public Person(String name, String email, int cpf, Gender gender, String phoneNumber, Date birthDate) throws Exception{        
+    public Person(String name, String email, int cpf, Gender gender, String phoneNumber, LocalDate birthDate) throws Exception{        
         this.validator = new ClientValidator();
         this.validator.validate_fields(email, phoneNumber);
 
@@ -42,11 +42,11 @@ public class Person {
         return email;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
