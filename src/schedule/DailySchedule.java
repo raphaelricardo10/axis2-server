@@ -32,28 +32,8 @@ public class DailySchedule {
         return date;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
     public Set<LocalTime> getAvailableTimes() {
         return this.availableTimes;
-    }
-
-    public DayOfWork getDayOfWork() {
-        return dayOfWork;
-    }
-
-    public void setDayOfWork(DayOfWork dayOfWork) {
-        this.dayOfWork = dayOfWork;
-    }
-
-    public LocalTime getDayIterator() {
-        return dayIterator;
-    }
-
-    public void setDayIterator(LocalTime dayIterator) {
-        this.dayIterator = dayIterator;
     }
 
     public void addAvailableTime(LocalTime availableTime) {
