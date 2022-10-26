@@ -1,5 +1,6 @@
 <serviceGroup>
-    <service name="ClientService" scope="application">
+    <service name="ClientService" scope="application" targetNamespace="http://services.client/">
+        <schema schemaNamespace="http://services.client/" />
         <description>
             A getter for clients
         </description>
@@ -11,7 +12,8 @@
         </messageReceivers>
         <parameter name="ServiceClass">services.client.ClientService</parameter>
     </service>
-    <service name="DoctorService" scope="application">
+    <service name="DoctorService" scope="application" targetNamespace="http://services.doctor/">
+        <schema schemaNamespace="http://services.doctor/" />
         <description>
             A getter for doctors
         </description>
@@ -23,7 +25,8 @@
         </messageReceivers>
         <parameter name="ServiceClass">services.doctor.DoctorService</parameter>
     </service>
-    <service name="ScheduleService" scope="application">
+    <service name="ScheduleService" scope="application" targetNamespace="http://services.schedule/">
+        <schema schemaNamespace="http://services.schedule/" />
         <description>
             Service to create a appointment schedule
         </description>

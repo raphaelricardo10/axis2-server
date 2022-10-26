@@ -32,8 +32,8 @@
             classpathref="axis2.classpath" />
         <java2wsdl className="services.client.ClientService"
             outputLocation="${build.dir}"
-            targetNamespace="http://services.client"
-            schemaTargetNamespace="http://services.client">
+            targetNamespace="http://services.client/"
+            schemaTargetNamespace="http://services.client/">
             <classpath>
                 <pathelement path="${axis2.classpath}" />
                 <pathelement location="${build.dir}/classes" />
@@ -41,8 +41,8 @@
         </java2wsdl>
         <java2wsdl className="services.doctor.DoctorService"
             outputLocation="${build.dir}"
-            targetNamespace="http://services.doctor"
-            schemaTargetNamespace="http://services.doctor">
+            targetNamespace="http://services.doctor/"
+            schemaTargetNamespace="http://services.doctor/">
             <classpath>
                 <pathelement path="${axis2.classpath}" />
                 <pathelement location="${build.dir}/classes" />
@@ -50,8 +50,8 @@
         </java2wsdl>
         <java2wsdl className="services.schedule.ScheduleService"
             outputLocation="${build.dir}"
-            targetNamespace="http://services.schedule"
-            schemaTargetNamespace="http://services.schedule">
+            targetNamespace="http://services.schedule/"
+            schemaTargetNamespace="http://services.schedule/">
             <classpath>
                 <pathelement path="${axis2.classpath}" />
                 <pathelement location="${build.dir}/classes" />
@@ -105,4 +105,8 @@
     <target name="clean">
         <delete dir="${build.dir}" />
     </target>
+
+    <target name="generate.all" depends="generate.service, generate.client"/>
+    <target name="deploy.all" depends="clean, deploy.service, deploy.client"/>
+
 </project>
