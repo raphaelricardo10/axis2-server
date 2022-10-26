@@ -1,7 +1,5 @@
 package schedule.doctor;
 
-
-
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.HashSet;
@@ -33,8 +31,8 @@ public class DoctorSchedule {
         this.dayIterator = startDate;
         this.endDate = startDate.plusDays(30);
         this.schedule = new TreeSet<DailySchedule>();
-
         this.allocations = new HashSet<ClientAllocation>();
+
         this.generateSchedule();
     }
 
@@ -75,11 +73,13 @@ public class DoctorSchedule {
     }
 
     public Set<ClientAllocation> getAllocations(String clientName) {
-        return this.allocations.stream().filter(al -> al.getClient().getName().startsWith(clientName)).collect(Collectors.toSet());
+        return this.allocations.stream().filter(al -> al.getClient().getName().startsWith(clientName))
+                .collect(Collectors.toSet());
     }
 
     public Set<ClientAllocation> getAllocations(LocalDate date) {
-        return this.allocations.stream().filter(al -> al.getScheduleTime().toLocalDate().equals(date)).collect(Collectors.toSet());
+        return this.allocations.stream().filter(al -> al.getScheduleTime().toLocalDate().equals(date))
+                .collect(Collectors.toSet());
     }
 
     private void validateSpecialty(Specialty specialty) throws Exception {
@@ -87,7 +87,7 @@ public class DoctorSchedule {
             throw new Exception("The doctor does not have this specialty");
         }
     }
-    
+
     public void allocateClient(Person client, Specialty specialty, LocalDateTime scheduledTo) throws Exception {
         this.validateSpecialty(specialty);
 
