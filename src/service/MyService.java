@@ -1,52 +1,43 @@
 package service;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import hospital.Doctor;
-import hospital.Specialty;
-import person.Gender;
-import schedule.ScheduleInterval;
+import mock.MockData;
+import person.Person;
 import schedule.doctor.DoctorSchedule;
-import workData.DayOfWork;
-import workData.WorkInfo;
 
 public class MyService {
+    private Set<Person> clients;
     private Map<Doctor, DoctorSchedule> schedules;
 
-    public MyService() {
+    public MyService() throws Exception {
+        this.clients = new HashSet<>();
         this.schedules = new HashMap<Doctor, DoctorSchedule>();
+
         this.setUp();
     }
+    
+    private void setUp() throws Exception {
+        Doctor doctor = MockData.makeDoctor();
+        Person person = MockData.makePerson("Lucas Ferreira");
 
-    private void setUp() {
-        int appointmentDuration = 30;
-        DayOfWeek[] daysOfWeek = { DayOfWeek.THURSDAY, DayOfWeek.TUESDAY };
-        ScheduleInterval workTime = new ScheduleInterval(LocalTime.of(9, 0), LocalTime.of(17, 0));
-        ScheduleInterval lunchTime = new ScheduleInterval(LocalTime.of(12, 0), LocalTime.of(13, 0));
-
-        DayOfWork dayOfWork = new DayOfWork(appointmentDuration, workTime, lunchTime);
-        WorkInfo workInfo = new WorkInfo(dayOfWork, daysOfWeek);
-        LocalDate startDate = LocalDate.of(2022, 10, 24);
-        Specialty[] specialties = { Specialty.FAMILY_MEDICINE };
-
-        Doctor doctor;
-        try {
-            doctor = new Doctor("Raphael Gonçalves", "raphaelricardo10@gmail.com", "161.491.137-10", Gender.MALE,
-                    "(21) 98678-6884", LocalDate.of(1996, 12, 27), "123456", specialties);
-            DoctorSchedule schedule = new DoctorSchedule(doctor, workInfo, startDate);
-            this.schedules.put(doctor, schedule);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.clients.add(person);
+        this.schedules.put(doctor, MockData.makeDoctorSchedule(doctor));
     }
 
     public Set<Doctor> getDoctors() {
         return this.schedules.keySet();
+    }
+
+    public Set<Person> getClients() {
+        return this.clients;
+    }
+
+    public DoctorSchedule getDoctorSchedule(Doctor doctor) {
+        return this.schedules.get(doctor);
     }
 }
