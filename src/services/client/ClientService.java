@@ -7,14 +7,13 @@ import mock.MockData;
 import person.Person;
 
 public class ClientService {
-    private Set<Person> clients;
+    private Person[] clients;
 
     public ClientService() throws Exception {
-        this.clients = new HashSet<Person>();
-        this.clients.add(MockData.makeDoctor());
+        this.clients = new Person[] { MockData.makePerson("Lucas Ferreira") };
     }
 
-    public Set<Person> getClients() {
+    public Person[] getClients() {
         return this.clients;
     }
 }

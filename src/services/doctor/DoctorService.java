@@ -7,14 +7,13 @@ import hospital.Doctor;
 import mock.MockData;
 
 public class DoctorService {
-    private Set<Doctor> doctors;
+    private Doctor[] doctors;
 
     public DoctorService() throws Exception {
-        this.doctors = new HashSet<Doctor>();
-        this.doctors.add(MockData.makeDoctor());
+        this.doctors = new Doctor[] { MockData.makeDoctor() };
     }
 
-    public Set<Doctor> getDoctors() {
+    public Doctor[] getDoctors() {
         return this.doctors;
     }
 }
