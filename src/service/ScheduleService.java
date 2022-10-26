@@ -1,13 +1,10 @@
 package service;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
 
-import hospital.Doctor;
 import mock.MockData;
-import person.Person;
+import hospital.Doctor;
 import schedule.doctor.DoctorSchedule;
 
 public class ScheduleService {
