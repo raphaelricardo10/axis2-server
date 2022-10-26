@@ -13,7 +13,7 @@ public class DailySchedule {
     private LocalDate date;
     private DayOfWork dayOfWork;
     private LocalTime dayIterator;
-    private Set<LocalTime> freeSlots;
+    private TreeSet<LocalTime> freeSlots;
 
     public DailySchedule(DayOfWork dayOfWork, LocalDate date) {
         this.date = date;
@@ -62,6 +62,14 @@ public class DailySchedule {
 
     public void removeSlot(LocalTime slot) {
         this.freeSlots.remove(slot);
+    }
+
+    public LocalTime getFirstFreeSlot() {
+        return this.freeSlots.first();
+    }
+
+    public boolean hasFreeSlot() {
+        return this.freeSlots.size() == 0;
     }
 
     private boolean is_in_working_time() {
