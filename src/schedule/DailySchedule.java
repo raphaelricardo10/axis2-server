@@ -9,10 +9,10 @@ import java.util.Comparator;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-final class DateComparator implements Comparator<LocalTime>{
+final class TimeComparator implements Comparator<LocalTime>{
     @Override
     public int compare(LocalTime t1, LocalTime t2) {
-        return t2.compareTo(t2);
+        return t1.compareTo(t2);
     }
 }
 
@@ -26,7 +26,7 @@ public class DailySchedule {
     public DailySchedule(DayOfWork dayOfWork, LocalDate date) {
         this.date = date;
         this.dayOfWork = dayOfWork;
-        this.freeSlots = new TreeSet<LocalTime>(new DateComparator());
+        this.freeSlots = new TreeSet<LocalTime>(new TimeComparator());
         this.dayIterator = this.dayOfWork.getWorkTime().getStart();
 
         this.generateSlots();
