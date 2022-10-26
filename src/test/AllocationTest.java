@@ -1,13 +1,9 @@
 package test;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Map;
-import java.util.Set;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import hospital.Specialty;
@@ -18,7 +14,7 @@ import schedule.DailySchedule;
 import schedule.doctor.DoctorSchedule;
 
 public class AllocationTest extends TestCase {
-    
+
     @Test
     public void testAllocateClient() throws Exception {
         Person client = MockData.makePerson();
