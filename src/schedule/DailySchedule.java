@@ -13,15 +13,15 @@ public class DailySchedule {
     private LocalDate date;
     private DayOfWork dayOfWork;
     private LocalTime dayIterator;
-    private TreeSet<LocalTime> freeSlots;
+    private TreeSet<LocalTime> availableTimes;
 
     public DailySchedule(DayOfWork dayOfWork, LocalDate date) {
         this.date = date;
         this.dayOfWork = dayOfWork;
-        this.freeSlots = new TreeSet<LocalTime>(new TimeComparator());
+        this.availableTimes = new TreeSet<LocalTime>(new TimeComparator());
         this.dayIterator = this.dayOfWork.getWorkTime().getStart();
 
-        this.generateSlots();
+        this.generateAvailableTimes();
     }
 
     public DailySchedule(DayOfWork dayOfWork) {
@@ -36,8 +36,8 @@ public class DailySchedule {
         this.date = date;
     }
 
-    public Set<LocalTime> getFreeSlots() {
-        return this.freeSlots;
+    public Set<LocalTime> getAvailableTimes() {
+        return this.availableTimes;
     }
 
     public DayOfWork getDayOfWork() {
@@ -56,20 +56,20 @@ public class DailySchedule {
         this.dayIterator = dayIterator;
     }
 
-    public void addSlot(LocalTime slot) {
-        this.freeSlots.add(slot);
+    public void addAvailableTime(LocalTime availableTime) {
+        this.availableTimes.add(availableTime);
     }
 
-    public void removeSlot(LocalTime slot) {
-        this.freeSlots.remove(slot);
+    public void removeAvailableTime(LocalTime availableTime) {
+        this.availableTimes.remove(availableTime);
     }
 
-    public LocalTime getFirstFreeSlot() {
-        return this.freeSlots.first();
+    public LocalTime getFirstAvailableTime() {
+        return this.availableTimes.first();
     }
 
-    public boolean hasFreeSlot() {
-        return this.freeSlots.size() == 0;
+    public boolean hasAvailableTime() {
+        return this.availableTimes.size() == 0;
     }
 
     private boolean is_in_working_time() {
@@ -100,13 +100,13 @@ public class DailySchedule {
         this.dayIterator = this.dayIterator.plusMinutes(this.dayOfWork.getAppointmentDuration());
     }
 
-    private void generateSlots() {
+    private void generateAvailableTimes() {
         while (this.is_in_working_time()) {
             if (this.is_in_lunch_time()) {
                 this.skip_launch_time();
             }
 
-            this.freeSlots.add(this.dayIterator);
+            this.availableTimes.add(this.dayIterator);
             this.advanceIterator();
         }
     }

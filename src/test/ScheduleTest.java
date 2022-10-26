@@ -14,12 +14,12 @@ import schedule.doctor.DoctorSchedule;
 public class ScheduleTest extends TestCase {
 
     @Test
-    public void testSlotsGenerated() {
+    public void testCanGenerateAvailableTimes() {
         DayOfWork dayOfWork = MockData.makeDayOfWork();
         DailySchedule day = new DailySchedule(dayOfWork, LocalDate.of(2022, 10, 25));
 
-        assertEquals(day.getFreeSlots().size(), 14);
-        assertFalse(day.getFreeSlots().contains(dayOfWork.getLaunchTime().getStart()));
+        assertEquals(day.getAvailableTimes().size(), 14);
+        assertFalse(day.getAvailableTimes().contains(dayOfWork.getLaunchTime().getStart()));
     }
 
     @Test
