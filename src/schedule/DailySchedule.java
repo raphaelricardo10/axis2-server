@@ -49,7 +49,7 @@ public class DailySchedule {
     }
 
     public boolean hasAvailableTime() {
-        return this.availableTimes.size() == 0;
+        return this.availableTimes.size() != 0;
     }
 
     private boolean is_in_working_time() {
