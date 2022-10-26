@@ -20,7 +20,7 @@ public class AllocationTest extends TestCase {
         Person client = MockData.makePerson();
         DoctorSchedule schedule = MockData.makeDoctorSchedule();
         DailySchedule scheduleOfDay = schedule.getSchedule(LocalDate.of(2022, 10, 25));
-        LocalTime freeTime = scheduleOfDay.getFreeSlots().iterator().next();
+        LocalTime freeTime = scheduleOfDay.getFirstFreeSlot();
         LocalDateTime allocationDateTime = LocalDateTime.of(scheduleOfDay.getDate(), freeTime);
 
         schedule.allocateClient(client, Specialty.FAMILY_MEDICINE, allocationDateTime);
