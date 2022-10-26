@@ -2,8 +2,8 @@
 
     <property environment="env" />
     <property name="build.dir" value="build" />
-    <property name="axis2.home" value="${env.AXIS2_HOME}"/>
-    <property name="client.dir" value="${basedir}/../client"/>
+    <property name="axis2.home" value="${env.AXIS2_HOME}" />
+    <property name="client.dir" value="${basedir}/../client" />
 
     <path id="axis2.classpath">
         <fileset dir="${axis2.home}/lib/">
@@ -30,10 +30,28 @@
         <taskdef name="java2wsdl"
             classname="org.apache.ws.java2wsdl.Java2WSDLTask"
             classpathref="axis2.classpath" />
-        <java2wsdl className="service.MyService"
+        <java2wsdl className="services.client.ClientService"
             outputLocation="${build.dir}"
-            targetNamespace="http://service"
-            schemaTargetNamespace="http://service">
+            targetNamespace="http://services.client"
+            schemaTargetNamespace="http://services.client">
+            <classpath>
+                <pathelement path="${axis2.classpath}" />
+                <pathelement location="${build.dir}/classes" />
+            </classpath>
+        </java2wsdl>
+        <java2wsdl className="services.doctor.DoctorService"
+            outputLocation="${build.dir}"
+            targetNamespace="http://services.doctor"
+            schemaTargetNamespace="http://services.doctor">
+            <classpath>
+                <pathelement path="${axis2.classpath}" />
+                <pathelement location="${build.dir}/classes" />
+            </classpath>
+        </java2wsdl>
+        <java2wsdl className="services.schedule.ScheduleService"
+            outputLocation="${build.dir}"
+            targetNamespace="http://services.schedule"
+            schemaTargetNamespace="http://services.schedule">
             <classpath>
                 <pathelement path="${axis2.classpath}" />
                 <pathelement location="${build.dir}/classes" />
@@ -42,13 +60,13 @@
     </target>
 
     <target name="generate.service" depends="compile.service">
-        <copy toDir="${build.dir}/classes" failonerror="false">
+        <copy toDir="${build.dir}/classes" failonerror="true">
             <fileset dir="${basedir}/resources">
                 <include name="**/*.xml" />
             </fileset>
         </copy>
-        <jar destfile="${build.dir}/MyService.aar">
-            <fileset excludes="**/Test.class" dir="${build.dir}/classes" />
+        <jar destfile="${build.dir}/HospitalService.aar">
+            <fileset excludes="test/*" dir="${build.dir}/classes" />
         </jar>
     </target>
 
@@ -57,7 +75,13 @@
             classname="org.apache.axis2.tool.ant.AntCodegenTask"
             classpathref="axis2.classpath" />
         <wsdl2java
-            wsdlfilename="${build.dir}/MyService.wsdl"
+            wsdlfilename="${build.dir}/ClientService.wsdl"
+            output="${build.dir}/resources" />
+        <wsdl2java
+            wsdlfilename="${build.dir}/DoctorService.wsdl"
+            output="${build.dir}/resources" />
+        <wsdl2java
+            wsdlfilename="${build.dir}/ScheduleService.wsdl"
             output="${build.dir}/resources" />
     </target>
 

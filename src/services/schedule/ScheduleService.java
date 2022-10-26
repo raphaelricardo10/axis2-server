@@ -1,4 +1,4 @@
-package service;
+package services.schedule;
 
 import java.util.Map;
 import java.util.HashMap;

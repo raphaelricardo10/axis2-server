@@ -1,4 +1,4 @@
-package service;
+package services.client;
 
 import java.util.Set;
 import java.util.HashSet;
