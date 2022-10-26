@@ -84,7 +84,7 @@ public class DoctorSchedule {
 
     private void validateSpecialty(Specialty specialty) throws Exception {
         if (!this.doctor.hasSpecialty(specialty)) {
-            throw new Exception("The doctor does not have this specialty");
+            throw new Exception("The doctor does not has this specialty");
         }
     }
 
