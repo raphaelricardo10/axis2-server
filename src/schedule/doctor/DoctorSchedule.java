@@ -68,8 +68,13 @@ public class DoctorSchedule {
         return this.allocations;
     }
 
-    public LocalTime getFirstAvailableTime() {
-        return this.schedule.stream().filter(sch -> sch.hasAvailableTime()).findFirst().get().getFirstAvailableTime();
+    private DailySchedule getFirstAvailableSchedule() {
+        return this.schedule.stream().filter(sch -> sch.hasAvailableTime()).findFirst().get();
+    }
+
+    public LocalDateTime getFirstAvailableTime() {
+        DailySchedule schedule = this.getFirstAvailableSchedule();
+        return LocalDateTime.of(schedule.getDate(), schedule.getFirstAvailableTime());
     }
 
     public Set<ClientAllocation> getAllocations(String clientName) {
