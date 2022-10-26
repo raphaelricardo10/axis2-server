@@ -16,6 +16,10 @@ public class Doctor extends Person{
         this.specialties = Set.of(specialties);
     }
 
+    public Doctor(Person person, String crm, Specialty[] specialties) throws Exception {
+        this(person.getName(), person.getEmail(), person.getCpf(),person.getGender(), person.getPhoneNumber(), person.getBirthDate(), crm, specialties);
+    }
+
     public String getCrm() {
         return crm;
     }
