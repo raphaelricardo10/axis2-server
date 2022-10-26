@@ -3,19 +3,11 @@ package schedule;
 import java.util.Set;
 import java.util.TreeSet;
 
-import workData.DayOfWork;
-
-import java.util.Comparator;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-final class TimeComparator implements Comparator<LocalTime>{
-    @Override
-    public int compare(LocalTime t1, LocalTime t2) {
-        return t1.compareTo(t2);
-    }
-}
-
+import workData.DayOfWork;
+import comparators.TimeComparator;
 
 public class DailySchedule {
     private LocalDate date;
