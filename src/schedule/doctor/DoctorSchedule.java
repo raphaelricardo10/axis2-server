@@ -3,9 +3,11 @@ package schedule.doctor;
 
 
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.HashSet;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.stream.Collectors;
 import allocation.ClientAllocation;
 
@@ -21,7 +23,7 @@ public class DoctorSchedule {
     private LocalDate dayIterator;
     private LocalDate endDate;
     private LocalDate startDate;
-    private Set<DailySchedule> schedule;
+    private TreeSet<DailySchedule> schedule;
     private Set<ClientAllocation> allocations;
 
     public DoctorSchedule(Doctor doctor, WorkInfo workInfo, LocalDate startDate) {
@@ -30,7 +32,7 @@ public class DoctorSchedule {
         this.startDate = startDate;
         this.dayIterator = startDate;
         this.endDate = startDate.plusDays(30);
-        this.schedule = new HashSet<DailySchedule>();
+        this.schedule = new TreeSet<DailySchedule>();
 
         this.allocations = new HashSet<ClientAllocation>();
         this.generateSchedule();
@@ -66,6 +68,10 @@ public class DoctorSchedule {
 
     public Set<ClientAllocation> getAllocations() {
         return this.allocations;
+    }
+
+    public LocalTime getFirstAvailableTime() {
+        return this.schedule.stream().filter(sch -> sch.hasAvailableTime()).findFirst().get().getFirstAvailableTime();
     }
 
     public Set<ClientAllocation> getAllocations(String clientName) {
