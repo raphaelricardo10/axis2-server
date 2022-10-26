@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.stream.Collectors;
 import allocation.ClientAllocation;
-
+import comparators.ScheduleComparator;
 import hospital.Doctor;
 import hospital.Specialty;
 import person.Person;
@@ -30,7 +30,7 @@ public class DoctorSchedule {
         this.startDate = startDate;
         this.dayIterator = startDate;
         this.endDate = startDate.plusDays(30);
-        this.schedule = new TreeSet<DailySchedule>();
+        this.schedule = new TreeSet<DailySchedule>(new ScheduleComparator());
         this.allocations = new HashSet<ClientAllocation>();
 
         this.generateSchedule();
