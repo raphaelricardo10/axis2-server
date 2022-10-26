@@ -1,8 +1,5 @@
 package services.client;
 
-import java.util.Set;
-import java.util.HashSet;
-
 import mock.MockData;
 import person.Person;
 

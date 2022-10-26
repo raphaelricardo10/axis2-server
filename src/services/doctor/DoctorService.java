@@ -1,8 +1,5 @@
 package services.doctor;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import hospital.Doctor;
 import mock.MockData;
 
