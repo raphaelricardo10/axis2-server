@@ -19,11 +19,7 @@ public class AllocationTest extends TestCase {
     public void testAllocateClient() throws Exception {
         Person client = MockData.makePerson();
         DoctorSchedule schedule = MockData.makeDoctorSchedule();
-        DailySchedule scheduleOfDay = schedule.getSchedule(LocalDate.of(2022, 10, 25));
-        LocalTime availableTime = scheduleOfDay.getFirstAvailableTime();
-        LocalDateTime allocationDateTime = LocalDateTime.of(scheduleOfDay.getDate(), availableTime);
-
-        schedule.allocateClient(client, Specialty.FAMILY_MEDICINE, allocationDateTime);
+        schedule.allocateClient(client, Specialty.FAMILY_MEDICINE, schedule.getFirstAvailableTime());
 
         assertEquals(schedule.getAllocations(client.getName()).size(), 1);
     }
