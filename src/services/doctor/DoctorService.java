@@ -1,16 +1,17 @@
 package services.doctor;
 
-import hospital.Doctor;
 import mock.MockData;
+import stub.DoctorStub;
 
 public class DoctorService {
-    private Doctor[] doctors;
+    private DoctorStub[] doctors;
 
     public DoctorService() throws Exception {
-        this.doctors = new Doctor[] { MockData.makeDoctor() };
+        DoctorStub doctor = new DoctorStub(MockData.makeDoctor());
+        this.doctors = new DoctorStub[] { doctor };
     }
 
-    public Doctor[] getDoctors() {
+    public DoctorStub[] getDoctors() {
         return this.doctors;
     }
 }

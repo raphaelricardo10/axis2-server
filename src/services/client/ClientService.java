@@ -1,16 +1,17 @@
 package services.client;
 
 import mock.MockData;
-import person.Person;
+import stub.PersonStub;
 
 public class ClientService {
-    private Person[] clients;
+    private PersonStub[] clients;
 
     public ClientService() throws Exception {
-        this.clients = new Person[] { MockData.makePerson("Lucas Ferreira") };
+        PersonStub person = new PersonStub(MockData.makePerson());
+        this.clients = new PersonStub[] { person };
     }
 
-    public Person[] getClients() {
+    public PersonStub[] getClients() {
         return this.clients;
     }
 }
