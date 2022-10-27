@@ -1,16 +1,11 @@
 package test;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-
 import org.junit.Test;
 
-import hospital.Specialty;
-import junit.framework.TestCase;
 import mock.MockData;
 import person.Person;
-import schedule.DailySchedule;
+import hospital.Specialty;
+import junit.framework.TestCase;
 import schedule.doctor.DoctorSchedule;
 
 public class AllocationTest extends TestCase {
