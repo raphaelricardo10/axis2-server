@@ -60,7 +60,7 @@ public class DoctorSchedule {
     }
 
     public DailySchedule getSchedule(LocalDate date) {
-        return this.schedule.stream().filter(sch -> sch.getDate().equals(date)).findAny().get();
+        return this.schedule.stream().filter(sch -> sch.getDate().equals(date)).findFirst().get();
     }
 
     public Set<ClientAllocation> getAllocations() {
@@ -100,6 +100,7 @@ public class DoctorSchedule {
         this.validateSpecialty(specialty);
 
         this.allocations.add(new ClientAllocation(client, specialty, scheduledTo));
+        this.getSchedule(scheduledTo.toLocalDate()).removeAvailableTime(scheduledTo.toLocalTime());
     }
 
     public void generateSchedule() {
