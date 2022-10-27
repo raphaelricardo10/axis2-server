@@ -1,14 +1,20 @@
 package services.schedule;
 
 import java.util.Map;
+
+import allocation.ClientAllocation;
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import mock.MockData;
 import person.Person;
 import hospital.Doctor;
 import hospital.Specialty;
 import schedule.doctor.DoctorSchedule;
+import stub.AllocationStub;
 
 public class ScheduleService {
     private Map<String, Person> clients;
@@ -36,5 +42,17 @@ public class ScheduleService {
         LocalDateTime availableTimeObj = LocalDateTime.parse(availableTime);
 
         this.schedules.get(doctorCrm).allocateClient(client, specialtyObj, availableTimeObj);
+    }
+
+    public AllocationStub[] getClientAllocations(String cpf) throws Exception {
+        List<AllocationStub> allocations = new ArrayList<AllocationStub>();
+
+        for (DoctorSchedule schedule : this.schedules.values()) {
+            for (ClientAllocation allocation : schedule.getAllocations(cpf)) {
+                allocations.add(new AllocationStub(schedule.getDoctor(), allocation));
+            }
+        }
+
+        return allocations.toArray(new AllocationStub[allocations.size()]);
     }
 }
