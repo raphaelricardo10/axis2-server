@@ -81,6 +81,10 @@ public class DoctorSchedule {
                 .collect(Collectors.toSet());
     }
 
+    public boolean clientHasAllocation(String cpf) {
+        return this.getAllocations(cpf).size() > 0;
+    }
+
     public Set<ClientAllocation> getAllocations(LocalDate date) {
         return this.allocations.stream().filter(al -> al.getScheduleTime().toLocalDate().equals(date))
                 .collect(Collectors.toSet());
