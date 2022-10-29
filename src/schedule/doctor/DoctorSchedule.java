@@ -76,6 +76,11 @@ public class DoctorSchedule {
         return LocalDateTime.of(schedule.getDate(), schedule.getFirstAvailableTime());
     }
 
+    public Set<ClientAllocation> getAllocations(Person client) {
+        return this.allocations.stream().filter(al -> al.getClient().equals(client))
+        .collect(Collectors.toSet());
+    }
+
     public Set<ClientAllocation> getAllocations(String cpf) {
         return this.allocations.stream().filter(al -> al.getClient().getCpf().startsWith(cpf))
                 .collect(Collectors.toSet());

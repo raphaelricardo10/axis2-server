@@ -16,6 +16,6 @@ public class AllocationTest extends TestCase {
         DoctorSchedule schedule = MockData.makeDoctorSchedule();
         schedule.allocateClient(client, Specialty.FAMILY_MEDICINE, schedule.getFirstAvailableTime());
 
-        assertEquals(schedule.getAllocations(client.getName()).size(), 1);
+        assertEquals(schedule.getAllocations(client).size(), 1);
     }
 }
