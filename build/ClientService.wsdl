@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://services.client/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ax21="http://stub/xsd" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" targetNamespace="http://services.client/">
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://stub/xsd">
+            <xs:complexType name="PersonStub">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="birthDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cpf" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="email" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="gender" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="phoneNumber" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax22="http://stub/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://services.client/">
+            <xs:import namespace="http://stub/xsd"/>
+            <xs:element name="getClients">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getClientsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax22:PersonStub"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getClientsRequest">
+        <wsdl:part name="parameters" element="ns:getClients"/>
+    </wsdl:message>
+    <wsdl:message name="getClientsResponse">
+        <wsdl:part name="parameters" element="ns:getClientsResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="ClientServicePortType">
+        <wsdl:operation name="getClients">
+            <wsdl:input message="ns:getClientsRequest" wsaw:Action="urn:getClients"/>
+            <wsdl:output message="ns:getClientsResponse" wsaw:Action="urn:getClientsResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ClientServiceSoap11Binding" type="ns:ClientServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getClients">
+            <soap:operation soapAction="urn:getClients" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="ClientServiceSoap12Binding" type="ns:ClientServicePortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getClients">
+            <soap12:operation soapAction="urn:getClients" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="ClientServiceHttpBinding" type="ns:ClientServicePortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="getClients">
+            <http:operation location="getClients"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ClientService">
+        <wsdl:port name="ClientServiceHttpSoap11Endpoint" binding="ns:ClientServiceSoap11Binding">
+            <soap:address location="http://localhost:8080/axis2/services/ClientService"/>
+        </wsdl:port>
+        <wsdl:port name="ClientServiceHttpSoap12Endpoint" binding="ns:ClientServiceSoap12Binding">
+            <soap12:address location="http://localhost:8080/axis2/services/ClientService"/>
+        </wsdl:port>
+        <wsdl:port name="ClientServiceHttpEndpoint" binding="ns:ClientServiceHttpBinding">
+            <http:address location="http://localhost:8080/axis2/services/ClientService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
