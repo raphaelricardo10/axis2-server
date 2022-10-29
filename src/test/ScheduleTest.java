@@ -19,7 +19,7 @@ public class ScheduleTest extends TestCase {
         DailySchedule day = new DailySchedule(dayOfWork, LocalDate.of(2022, 10, 25));
 
         assertEquals(day.getAvailableTimes().size(), 14);
-        assertFalse(day.getAvailableTimes().contains(dayOfWork.getLaunchTime().getStart()));
+        assertFalse(day.getAvailableTimes().contains(dayOfWork.getLunchTime().getStart()));
     }
 
     @Test

@@ -57,23 +57,23 @@ public class DailySchedule {
     }
 
     private boolean is_in_lunch_time() {
-        if (this.dayIterator.equals(this.dayOfWork.getLaunchTime().getStart())) {
+        if (this.dayIterator.equals(this.dayOfWork.getLunchTime().getStart())) {
             return true;
         }
 
-        if (this.dayIterator.isBefore(this.dayOfWork.getLaunchTime().getStart())) {
+        if (this.dayIterator.isBefore(this.dayOfWork.getLunchTime().getStart())) {
             return false;
         }
 
-        if (this.dayIterator.isAfter(this.dayOfWork.getLaunchTime().getEnd())) {
+        if (this.dayIterator.isAfter(this.dayOfWork.getLunchTime().getEnd())) {
             return false;
         }
 
         return true;
     }
 
-    private void skip_launch_time() {
-        this.dayIterator = this.dayOfWork.getLaunchTime().getEnd();
+    private void skip_lunch_time() {
+        this.dayIterator = this.dayOfWork.getLunchTime().getEnd();
     }
 
     private void advanceIterator() {
@@ -83,7 +83,7 @@ public class DailySchedule {
     private void generateAvailableTimes() {
         while (this.is_in_working_time()) {
             if (this.is_in_lunch_time()) {
-                this.skip_launch_time();
+                this.skip_lunch_time();
             }
 
             this.availableTimes.add(this.dayIterator);

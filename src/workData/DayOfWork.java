@@ -5,11 +5,11 @@ import schedule.ScheduleInterval;
 public class DayOfWork {
     private int appointmentDuration;
     private ScheduleInterval workTime;
-    private ScheduleInterval launchTime;
+    private ScheduleInterval lunchTime;
 
-    public DayOfWork(int appointmentDuration, ScheduleInterval workTime, ScheduleInterval launchTime) {
+    public DayOfWork(int appointmentDuration, ScheduleInterval workTime, ScheduleInterval lunchTime) {
         this.workTime = workTime;
-        this.launchTime = launchTime;
+        this.lunchTime = lunchTime;
         this.appointmentDuration = appointmentDuration;
     }
 
@@ -29,11 +29,11 @@ public class DayOfWork {
         this.workTime = workTime;
     }
 
-    public ScheduleInterval getLaunchTime() {
-        return launchTime;
+    public ScheduleInterval getLunchTime() {
+        return lunchTime;
     }
 
-    public void setLaunchTime(ScheduleInterval launchTime) {
-        this.launchTime = launchTime;
+    public void setLunchTime(ScheduleInterval lunchTime) {
+        this.lunchTime = lunchTime;
     }
 }
