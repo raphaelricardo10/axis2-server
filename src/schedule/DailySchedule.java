@@ -52,11 +52,11 @@ public class DailySchedule {
         return this.availableTimes.size() != 0;
     }
 
-    private boolean is_in_working_time() {
+    private boolean isInWorkTime() {
         return this.dayIterator.isBefore(this.dayOfWork.getWorkTime().getEnd());
     }
 
-    private boolean is_in_lunch_time() {
+    private boolean isInLunchTime() {
         if (this.dayIterator.equals(this.dayOfWork.getLunchTime().getStart())) {
             return true;
         }
@@ -72,7 +72,7 @@ public class DailySchedule {
         return true;
     }
 
-    private void skip_lunch_time() {
+    private void skipLunchTime() {
         this.dayIterator = this.dayOfWork.getLunchTime().getEnd();
     }
 
@@ -81,9 +81,9 @@ public class DailySchedule {
     }
 
     private void generateAvailableTimes() {
-        while (this.is_in_working_time()) {
-            if (this.is_in_lunch_time()) {
-                this.skip_lunch_time();
+        while (this.isInWorkTime()) {
+            if (this.isInLunchTime()) {
+                this.skipLunchTime();
             }
 
             this.availableTimes.add(this.dayIterator);

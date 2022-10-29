@@ -7,9 +7,9 @@ import validators.email.EmailValidator;
 import validators.phoneNumber.PhoneNumberValidator;
 
 public class ValidatorsTest extends TestCase {
-    private static <T extends Validator> boolean is_all_valid(String[] data, T validator) {
+    private static <T extends Validator> boolean isAllValid(String[] data, T validator) {
         for (String o : data) {
-            if (!validator.is_valid(o)) {
+            if (!validator.isValid(o)) {
                 return false;
             }
         }
@@ -27,9 +27,9 @@ public class ValidatorsTest extends TestCase {
                 "a@a",
         };
 
-        assertTrue(validator.is_valid(validEmail));
+        assertTrue(validator.isValid(validEmail));
 
-        assertFalse(ValidatorsTest.is_all_valid(invalidEmails, validator));
+        assertFalse(ValidatorsTest.isAllValid(invalidEmails, validator));
 
     }
 
@@ -49,8 +49,8 @@ public class ValidatorsTest extends TestCase {
                 "(21) 999999999"
         };
 
-        assertTrue(ValidatorsTest.is_all_valid(validPhoneNumbers, validator));
-        assertFalse(ValidatorsTest.is_all_valid(invalidPhoneNumbers, validator));
+        assertTrue(ValidatorsTest.isAllValid(validPhoneNumbers, validator));
+        assertFalse(ValidatorsTest.isAllValid(invalidPhoneNumbers, validator));
     }
 
     public void testValidateCpf() {
@@ -69,7 +69,7 @@ public class ValidatorsTest extends TestCase {
                 "11111111111",
         };
 
-        assertTrue(validator.is_valid(validCpf));
-        assertFalse(ValidatorsTest.is_all_valid(invalidCpfs, validator));
+        assertTrue(validator.isValid(validCpf));
+        assertFalse(ValidatorsTest.isAllValid(invalidCpfs, validator));
     }
 }

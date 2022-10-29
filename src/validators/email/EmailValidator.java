@@ -10,7 +10,7 @@ public class EmailValidator extends Validator {
     }
 
     @Override
-    public boolean is_valid(String email) {
+    public boolean isValid(String email) {
         return Pattern.compile(this.pattern)
                 .matcher(email)
                 .matches();

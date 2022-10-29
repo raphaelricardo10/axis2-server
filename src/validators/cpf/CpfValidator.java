@@ -15,7 +15,7 @@ public class CpfValidator extends Validator{
         this.digits = new ArrayList<Integer>();
     }
 
-    private static int get_verification_digit(List<Integer> digits){
+    private static int getVerificationDigit(List<Integer> digits){
         int acc = 0;
 
         for(int pos = 0; pos < digits.size(); pos++){
@@ -33,74 +33,74 @@ public class CpfValidator extends Validator{
         return verification;
     }
 
-    private boolean has_correct_digit_number(){
+    private boolean hasCorrectDigitNumber(){
         return this.digits.size() == 11;
     }
 
-    private boolean has_different_digits(){
+    private boolean hasDifferentDigits(){
         return !this.digits.stream().allMatch(s -> s.equals(this.digits.get(0)));
     }
 
-    private boolean is_first_verification_valid(){
-        Integer verification = CpfValidator.get_verification_digit(this.digits.subList(0, 9));
+    private boolean isFirstVerificationValid(){
+        Integer verification = CpfValidator.getVerificationDigit(this.digits.subList(0, 9));
 
         return this.digits.get(9) == verification;
     }
 
-    private boolean is_second_verification_valid(){
-        Integer verification = CpfValidator.get_verification_digit(this.digits.subList(0, 10));
+    private boolean isSecondVerificationValid(){
+        Integer verification = CpfValidator.getVerificationDigit(this.digits.subList(0, 10));
 
         return this.digits.get(10) == verification;
     }
 
-    public boolean is_format_valid(String cpf) {
+    public boolean isFormatValid(String cpf) {
         return Pattern.compile(this.pattern)
             .matcher(cpf)
             .matches();
     }
 
-    public boolean is_value_valid(String cpf){
-        this.set_cpf_digits(cpf);
+    public boolean isValueValid(String cpf){
+        this.setCpfDigits(cpf);
 
-        if(!this.has_correct_digit_number()) {
+        if(!this.hasCorrectDigitNumber()) {
             return false;
         }
 
-        if(!this.has_different_digits()){
+        if(!this.hasDifferentDigits()){
             return false;
         }
         
-        if(!this.is_first_verification_valid()){
+        if(!this.isFirstVerificationValid()){
             return false;
         }
         
-        if(!this.is_second_verification_valid()){
+        if(!this.isSecondVerificationValid()){
             return false;
         }
 
         return true;
     }
 
-    public boolean is_valid(String cpf) {
-        if(!this.is_format_valid(cpf)){
+    public boolean isValid(String cpf) {
+        if(!this.isFormatValid(cpf)){
             return false;
         }
 
-        if(!this.is_value_valid(cpf)){
+        if(!this.isValueValid(cpf)){
             return false;
         }
 
         return true;
     }
 
-    private void set_cpf_digits(String cpf){
+    private void setCpfDigits(String cpf){
         cpf = cpf.replaceAll("\\D+","");
 
         List<Integer> digits = new ArrayList<Integer>();
        
         for(char digit : cpf.toCharArray()){
-            Integer numeric_digit = Character.getNumericValue(digit);
-            digits.add(numeric_digit);
+            Integer numericDigit = Character.getNumericValue(digit);
+            digits.add(numericDigit);
         }
 
         this.digits = digits;

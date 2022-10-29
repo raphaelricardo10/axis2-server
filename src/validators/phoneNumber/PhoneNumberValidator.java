@@ -10,7 +10,7 @@ public class PhoneNumberValidator extends Validator{
     }
 
     @Override
-    public boolean is_valid(String phoneNumber) {
+    public boolean isValid(String phoneNumber) {
         return Pattern.compile(this.pattern)
                 .matcher(phoneNumber)
                 .matches();

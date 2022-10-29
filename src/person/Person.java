@@ -16,7 +16,7 @@ public class Person {
 
     public Person(String name, String email, String cpf, Gender gender, String phoneNumber, LocalDate birthDate) throws Exception{        
         this.validator = new ClientValidator();
-        this.validator.validate_fields(email, phoneNumber, cpf);
+        this.validator.validateFields(email, phoneNumber, cpf);
 
         this.cpf = cpf;
         this.name = name;
@@ -51,7 +51,7 @@ public class Person {
     }
 
     public void setEmail(String email) throws Exception {
-        this.validator.validate_email(email);
+        this.validator.validateEmail(email);
         this.email = email;
     }
 
@@ -68,7 +68,7 @@ public class Person {
     }
 
     public void setPhoneNumber(String phoneNumber) throws Exception {
-        this.validator.validate_phone_number(phoneNumber);
+        this.validator.validatePhoneNumber(phoneNumber);
         this.phoneNumber = phoneNumber;
     }
 }
