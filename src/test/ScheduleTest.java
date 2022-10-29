@@ -23,7 +23,7 @@ public class ScheduleTest extends TestCase {
     }
 
     @Test
-    public void testMonthlyScheduleGenerated() throws Exception {
+    public void testCanGenerateMonthlySchedule() throws Exception {
         DoctorSchedule schedule = MockData.makeDoctorSchedule();
 
         assertEquals(schedule.getSchedule().size(), 10);

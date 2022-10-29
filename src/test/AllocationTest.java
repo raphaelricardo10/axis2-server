@@ -11,7 +11,7 @@ import schedule.doctor.DoctorSchedule;
 public class AllocationTest extends TestCase {
 
     @Test
-    public void testAllocateClient() throws Exception {
+    public void testCanAllocateClient() throws Exception {
         Person client = MockData.makePerson();
         DoctorSchedule schedule = MockData.makeDoctorSchedule();
         schedule.allocateClient(client, Specialty.FAMILY_MEDICINE, schedule.getFirstAvailableTime());
