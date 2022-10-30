@@ -27,6 +27,18 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="ClientServiceException">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="ClientServiceException" nillable="true" type="ns:Exception" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:complexType name="Exception">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
             <xs:element name="createClient">
                 <xs:complexType>
                     <xs:sequence>
@@ -55,10 +67,13 @@
         <wsdl:part name="parameters" element="ns:getClientsResponse" />
     </wsdl:message>
     <wsdl:message name="createClientRequest">
-        <wsdl:part name="parameters" element="ns:getClients" />
+        <wsdl:part name="parameters" element="ns:createClient" />
     </wsdl:message>
     <wsdl:message name="createClientResponse">
-        <wsdl:part name="parameters" element="ns:getClientsResponse" />
+        <wsdl:part name="parameters" element="ns:createClientResponse" />
+    </wsdl:message>
+    <wsdl:message name="ClientServiceException">
+        <wsdl:part name="parameters" element="ns:ClientServiceException" />
     </wsdl:message>
     <wsdl:portType name="ClientServicePortType">
         <wsdl:operation name="getClients">
@@ -68,6 +83,7 @@
         <wsdl:operation name="createClient">
             <wsdl:input message="ns:createClientRequest" wsaw:Action="urn:createClient" />
             <wsdl:output message="ns:createClientResponse" wsaw:Action="urn:createClientResponse" />
+            <wsdl:fault message="ns:ClientServiceException" name="ClientServiceException" wsaw:Action="urn:createClientClientServiceException" />
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="ClientServiceSoap12Binding" type="ns:ClientServicePortType">
@@ -89,6 +105,9 @@
             <wsdl:output>
                 <soap12:body use="literal" />
             </wsdl:output>
+            <wsdl:fault name="ClientServiceException">
+                <soap:fault use="literal" name="ClientServiceException" />
+            </wsdl:fault>
         </wsdl:operation>
     </wsdl:binding>
     <wsdl:service name="ClientService">
