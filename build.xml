@@ -51,14 +51,14 @@
         <wsdl2java wsdlfilename="${build.dir}/DoctorService.wsdl" output="${build.dir}/resources" />
         <wsdl2java wsdlfilename="${build.dir}/ScheduleService.wsdl" output="${build.dir}/resources" />
     </target>
-    <target name="deploy.service" depends="generate.service">
+    <target name="deploy.service" depends="clean.service, generate.service">
         <copy toDir="${axis2.home}/repository/services/" failonerror="true">
             <fileset dir="${build.dir}/">
                 <include name="*.aar" />
             </fileset>
         </copy>
     </target>
-    <target name="deploy.client" depends="generate.wsdl, generate.client">
+    <target name="deploy.client" depends="clean.resources, generate.wsdl, generate.client">
         <copy toDir="${client.dir}" failonerror="true">
             <fileset dir="${build.dir}/resources/">
                 <include name="build.xml" />
@@ -66,9 +66,16 @@
             </fileset>
         </copy>
     </target>
-    <target name="clean">
+    <target name="clean.resources">
+        <delete dir="${build.dir}/resources" />
+    </target>
+    <target name="clean.service">
+        <delete dir="${build.dir}/*.aar" />
+        <delete dir="${build.dir}/classes/META-INF" />
+    </target>
+    <target name="clean.all">
         <delete dir="${build.dir}" />
     </target>
     <target name="generate.all" depends="generate.service, generate.client" />
-    <target name="deploy.all" depends="clean, deploy.service, deploy.client" />
+    <target name="deploy.all" depends="clean.all, deploy.service, deploy.client" />
 </project>
