@@ -21,4 +21,9 @@ public class ClientService {
 
         return clientsArr;
     }
+
+    public void createClient(String name, String email, String cpf, String gender, String phoneNumber, String birthDate) throws Exception {
+        PersonStub client = new PersonStub(name, email, cpf, gender, phoneNumber, birthDate);
+        this.clients.add(client);
+    }
 }
