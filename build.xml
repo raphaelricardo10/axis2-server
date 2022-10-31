@@ -1,10 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project name="AxisWSImplementation" basedir="." default="generate.service">
-
     <property environment="env" />
     <property name="build.dir" value="build" />
     <property name="axis2.home" value="${env.AXIS2_HOME}" />
     <property name="client.dir" value="${basedir}/../client" />
-
     <path id="axis2.classpath">
         <fileset dir="${axis2.home}/lib/">
             <include name="*.jar" />
@@ -13,52 +12,28 @@
             <include name="*.jar" />
         </fileset>
     </path>
-
     <target name="compile.service">
         <mkdir dir="${build.dir}" />
         <mkdir dir="${build.dir}/classes" />
         <mkdir dir="${build.dir}/resources" />
         <!--First let's compile the classes-->
-        <javac debug="on"
-            fork="true"
-            destdir="${build.dir}/classes"
-            srcdir="${basedir}/src"
-            classpathref="axis2.classpath"></javac>
+        <javac debug="on" fork="true" destdir="${build.dir}/classes" srcdir="${basedir}/src" classpathref="axis2.classpath" />
     </target>
-
     <target name="generate.wsdl" depends="compile.service">
-        <taskdef name="java2wsdl"
-            classname="org.apache.ws.java2wsdl.Java2WSDLTask"
-            classpathref="axis2.classpath" />
-        <java2wsdl className="services.client.ClientService"
-            outputLocation="${build.dir}"
-            targetNamespace="http://services.client/"
-            schemaTargetNamespace="http://services.client/">
+        <taskdef name="java2wsdl" classname="org.apache.ws.java2wsdl.Java2WSDLTask" classpathref="axis2.classpath" />
+        <java2wsdl className="services.doctor.DoctorService" outputLocation="${build.dir}" targetNamespace="http://services.doctor/" schemaTargetNamespace="http://services.doctor/">
             <classpath>
                 <pathelement path="${axis2.classpath}" />
                 <pathelement location="${build.dir}/classes" />
             </classpath>
         </java2wsdl>
-        <java2wsdl className="services.doctor.DoctorService"
-            outputLocation="${build.dir}"
-            targetNamespace="http://services.doctor/"
-            schemaTargetNamespace="http://services.doctor/">
-            <classpath>
-                <pathelement path="${axis2.classpath}" />
-                <pathelement location="${build.dir}/classes" />
-            </classpath>
-        </java2wsdl>
-        <java2wsdl className="services.schedule.ScheduleService"
-            outputLocation="${build.dir}"
-            targetNamespace="http://services.schedule/"
-            schemaTargetNamespace="http://services.schedule/">
+        <java2wsdl className="services.schedule.ScheduleService" outputLocation="${build.dir}" targetNamespace="http://services.schedule/" schemaTargetNamespace="http://services.schedule/">
             <classpath>
                 <pathelement path="${axis2.classpath}" />
                 <pathelement location="${build.dir}/classes" />
             </classpath>
         </java2wsdl>
     </target>
-
     <target name="generate.service" depends="compile.service">
         <copy toDir="${build.dir}/classes" failonerror="true">
             <fileset dir="${basedir}/resources">
@@ -69,22 +44,12 @@
             <fileset excludes="test/*" dir="${build.dir}/classes" />
         </jar>
     </target>
-
     <target name="generate.client" depends="compile.service">
-        <taskdef name="wsdl2java"
-            classname="org.apache.axis2.tool.ant.AntCodegenTask"
-            classpathref="axis2.classpath" />
-        <wsdl2java
-            wsdlfilename="${build.dir}/ClientService.wsdl"
-            output="${build.dir}/resources" />
-        <wsdl2java
-            wsdlfilename="${build.dir}/DoctorService.wsdl"
-            output="${build.dir}/resources" />
-        <wsdl2java
-            wsdlfilename="${build.dir}/ScheduleService.wsdl"
-            output="${build.dir}/resources" />
+        <taskdef name="wsdl2java" classname="org.apache.axis2.tool.ant.AntCodegenTask" classpathref="axis2.classpath" />
+        <wsdl2java wsdlfilename="${build.dir}/ClientService.wsdl" output="${build.dir}/resources" />
+        <wsdl2java wsdlfilename="${build.dir}/DoctorService.wsdl" output="${build.dir}/resources" />
+        <wsdl2java wsdlfilename="${build.dir}/ScheduleService.wsdl" output="${build.dir}/resources" />
     </target>
-
     <target name="deploy.service" depends="generate.service">
         <copy toDir="${axis2.home}/repository/services/" failonerror="true">
             <fileset dir="${build.dir}/">
@@ -92,7 +57,6 @@
             </fileset>
         </copy>
     </target>
-
     <target name="deploy.client" depends="generate.wsdl, generate.client">
         <copy toDir="${client.dir}" failonerror="true">
             <fileset dir="${build.dir}/resources/">
@@ -101,12 +65,9 @@
             </fileset>
         </copy>
     </target>
-
     <target name="clean">
         <delete dir="${build.dir}" />
     </target>
-
-    <target name="generate.all" depends="generate.service, generate.client"/>
-    <target name="deploy.all" depends="clean, deploy.service, deploy.client"/>
-
+    <target name="generate.all" depends="generate.service, generate.client" />
+    <target name="deploy.all" depends="clean, deploy.service, deploy.client" />
 </project>
