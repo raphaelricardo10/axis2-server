@@ -4,6 +4,7 @@
     <property name="build.dir" value="build" />
     <property name="axis2.home" value="${env.AXIS2_HOME}" />
     <property name="client.dir" value="${basedir}/../client" />
+    <property name="topdown.dir" value="${basedir}/topdown" />
     <path id="axis2.classpath">
         <fileset dir="${axis2.home}/lib/">
             <include name="*.jar" />
@@ -46,7 +47,7 @@
     </target>
     <target name="generate.client" depends="compile.service">
         <taskdef name="wsdl2java" classname="org.apache.axis2.tool.ant.AntCodegenTask" classpathref="axis2.classpath" />
-        <wsdl2java wsdlfilename="${build.dir}/ClientService.wsdl" output="${build.dir}/resources" />
+        <wsdl2java wsdlfilename="${topdown.dir}/ClientService.wsdl" output="${build.dir}/resources" />
         <wsdl2java wsdlfilename="${build.dir}/DoctorService.wsdl" output="${build.dir}/resources" />
         <wsdl2java wsdlfilename="${build.dir}/ScheduleService.wsdl" output="${build.dir}/resources" />
     </target>
