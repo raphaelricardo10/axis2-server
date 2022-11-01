@@ -63,7 +63,7 @@
         </copy>
     </target>
     <target name="deploy.client" depends="clean.resources, generate.wsdl, generate.client.jar">
-        <copy toDir="${client.dir}" failonerror="true" >
+        <copy toDir="${client.dir}/src" failonerror="true" overwrite="true" >
             <fileset dir="${build.dir}/resources/src">
                 <include name="**/*.java" />
             </fileset>
