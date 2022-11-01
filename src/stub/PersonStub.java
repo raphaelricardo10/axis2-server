@@ -12,6 +12,9 @@ public class PersonStub {
     private String phoneNumber;
     private ClientValidator validator;
 
+    public PersonStub() {
+    }
+
     public PersonStub(String name, String email, String cpf, String gender, String phoneNumber, String birthDate)
             throws Exception {
         this.validator = new ClientValidator();
@@ -56,5 +59,29 @@ public class PersonStub {
 
     public void validateFields() throws Exception {
         this.validator.validateFields(this.email, this.phoneNumber, this.cpf);
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

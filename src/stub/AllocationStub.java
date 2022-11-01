@@ -9,6 +9,9 @@ public class AllocationStub {
     private PersonStub client;
     private String appointmentDate;
 
+    public AllocationStub() {
+    }
+
     public AllocationStub(Doctor doctor, ClientAllocation allocation) throws Exception{
         this.doctor = new DoctorStub(doctor);
         this.client = new PersonStub(allocation.getClient());
@@ -30,5 +33,21 @@ public class AllocationStub {
 
     public String getAppointmentDate() {
         return appointmentDate;
+    }
+
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
+    }
+
+    public void setDoctor(DoctorStub doctor) {
+        this.doctor = doctor;
+    }
+
+    public void setClient(PersonStub client) {
+        this.client = client;
+    }
+
+    public void setAppointmentDate(String appointmentDate) {
+        this.appointmentDate = appointmentDate;
     }
 }

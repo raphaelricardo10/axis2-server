@@ -15,6 +15,9 @@ public class DoctorStub {
     private String phoneNumber;
     private String[] specialties;
 
+    public DoctorStub() {
+    }
+
     public DoctorStub(Doctor doctor) {
         this.crm = doctor.getCrm();
         this.cpf = doctor.getCpf();
@@ -65,5 +68,37 @@ public class DoctorStub {
         for (Specialty specialty : specialties) {
             this.specialties[i++] = specialty.toString();
         }
+    }
+
+    public void setCrm(String crm) {
+        this.crm = crm;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setSpecialties(String[] specialties) {
+        this.specialties = specialties;
     }
 }
