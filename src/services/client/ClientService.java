@@ -28,4 +28,12 @@ public class ClientService {
 
         return client;
     }
+
+    public void removeClient(String cpf) {
+        this.clients.remove(cpf);
+    }
+
+    public void updateClient(PersonStub client) {
+        this.clients.replace(client.getCpf(), client);
+    }
 }
