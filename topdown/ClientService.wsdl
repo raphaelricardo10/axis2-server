@@ -58,6 +58,13 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="removeClient">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="cpf" nillable="true" type="xs:string" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:schema>
     </wsdl:types>
     <wsdl:message name="getClientsRequest">
@@ -72,6 +79,9 @@
     <wsdl:message name="createClientResponse">
         <wsdl:part name="parameters" element="ns:createClientResponse" />
     </wsdl:message>
+    <wsdl:message name="removeClientRequest">
+        <wsdl:part name="parameters" element="ns:removeClient" />
+    </wsdl:message>
     <wsdl:message name="ClientServiceException">
         <wsdl:part name="parameters" element="ns:ClientServiceException" />
     </wsdl:message>
@@ -84,6 +94,10 @@
             <wsdl:input message="ns:createClientRequest" wsaw:Action="urn:createClient" />
             <wsdl:output message="ns:createClientResponse" wsaw:Action="urn:createClientResponse" />
             <wsdl:fault message="ns:ClientServiceException" name="ClientServiceException" wsaw:Action="urn:createClientClientServiceException" />
+        </wsdl:operation>
+        <wsdl:operation name="removeClient">
+            <wsdl:input message="ns:removeClientRequest" wsaw:Action="urn:removeeClient" />
+            <wsdl:fault message="ns:ClientServiceException" name="ClientServiceException" wsaw:Action="urn:removeClientClientServiceException" />
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="ClientServiceSoap12Binding" type="ns:ClientServicePortType">
@@ -99,6 +113,18 @@
         </wsdl:operation>
         <wsdl:operation name="createClient">
             <soap12:operation soapAction="urn:createClient" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+            <wsdl:fault name="ClientServiceException">
+                <soap:fault use="literal" name="ClientServiceException" />
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="removeClient">
+            <soap12:operation soapAction="urn:removeClient" style="document" />
             <wsdl:input>
                 <soap12:body use="literal" />
             </wsdl:input>
