@@ -1,7 +1,7 @@
 package services.client;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 import mock.MockData;
 import stub.PersonStub;
